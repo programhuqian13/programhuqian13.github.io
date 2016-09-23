@@ -1,24 +1,68 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    {% for post in site.posts %}
+    
     <url>
-        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
-        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        <loc>http://example.com/jekyll/update/2016/09/23/welcome-to-jekyll.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
         <changefreq>weekly</changefreq>
     </url>
-    {% endfor %}
-    {% for post in site.pages %}{% if post.isNavItem %}
+    
     <url>
-        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
-        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        <loc>http://example.com/note/2016/07/22/note-php-syntax.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
         <changefreq>weekly</changefreq>
     </url>
-    {% endif %}
-    {% endfor %}
+    
+    <url>
+        <loc>http://example.com/translation/2016/04/20/Install-WAMP.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>http://example.com/tutorial/2016/04/20/IRC-quick-start.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>http://example.com/translation/2016/01/23/Formating_PHP_Strings_With_Printf_And_Sprintf.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>http://example.com/note/2015/11/19/learning-note-YII(1.1).html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>http://example.com/translation/2015/09/28/Understanding_the_diff_command_in_unix.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>http://example.com/translation/2015/09/26/Http_headers_and_PHP_header()_function.html</loc>
+        <lastmod>2016-09-23T18:29:33+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </urlset>

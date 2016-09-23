@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="该教程只是为了让你在几分钟内就连上 IRC 网络并开始聊天. IRC 功能强大, 如果要深入了解, http://www.irchelp.org 是个不错的资源">
+
+<title>IRC 急速入门</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="http://example.comfavicon.ico" type="image/icon">
+<link rel="icon" href="http://example.comfavicon.ico" type="image/icon">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/base.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/simplePagination.css">
+
+<script type="text/javascript" src="http://example.comjavascripts/jquery.js"></script>
+
+<!--[if lt IE 9]>
+<script src="http://example.comjavascripts/html5shiv.js"></script>
+<![endif]-->
+    <link rel="stylesheet" type="text/css" href="http://example.comstylesheets/markdownreader.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/pygments_monokai.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/code_block.css">
+</head>
+
+<body>
+    <header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <div class="col-lg-7">
+                <h1></h1>
+            </div>
+
+
+            <div class="col-lg-5">
+                <p>On the way to death</p>
+                <p>On the way of learning</p>
+            </div>
+        </div>
+
+        <div class="row navicon">
+            <a href=""><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="row navbar">
+            <nav class="col-lg-8 col-md-8 col-xs-12">
+                <ul class="row">
+                    <li class="col-lg-3"><a href="http://example.com">HOME</a></li>
+                    <li class="col-lg-3">
+                        <ul class="subnav">
+                            <a href="javascript:void(0)">POST</a>
+                            <li><a href="http://example.comcategory">CATEGORY</a></li>
+                            <li><a href="http://example.comtag">TAG</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-lg-3"><a href="http://example.comabout">ABOUT</a></li>
+                    <li class="col-lg-3"><a href="http://example.combuilding">PLAY GROUND</a></li>
+                </ul>
+            </nav>
+
+            <div class="search col-lg-4 col-md-4 col-xs-12">
+                <form id="dummySearch">
+                    <label for="search"></label>
+                    <input id="search" name="serach" type="text" placeholder="Not That Dummy Search">
+                    <i class="fa fa-search"></i>
+                </form>
+                <script>
+                $(function(){
+                    $('#dummySearch').submit(function(e) {
+                        e.preventDefault();
+                        keyword = $('#search').val();
+                        url = 'https://www.google.com.hk/search?q=site%3Aunifreak.github.io+' + keyword;
+                        location.href = url;
+                    })
+                })
+                </script>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="container">
+        <div class="row">
+            <div id="markdown-container" class="col-lg-9">
+                <header>
+                    <p id="postTitle">IRC 急速入门</p>
+                    
+                    <ul class="tags clearfix">
+                        
+                        <li><i class="fa fa-tag"></i> irc</li>
+                        
+                        <li><i class="fa fa-tag"></i> tuts</li>
+                        
+                    </ul>
+                    
+                    <p id="postMeta">posted on 20 Apr 2016 under category <a href="http://example.comcategory/">tutorial</a></p>
+
+                </header>
+
+                <h1 id="section">名词</h1>
+
+<ul>
+  <li>
+    <p><strong>IRC</strong></p>
+
+    <p>一种网络聊天协议</p>
+  </li>
+  <li>
+    <p><strong>IRC 网络</strong></p>
+
+    <p>依据 IRC 协议组成的聊天网络, 
+  比较知名的有 <code class="highlighter-rouge">freenode</code>, <code class="highlighter-rouge">EFnet</code>, <code class="highlighter-rouge">DALnet</code> 等</p>
+  </li>
+  <li>
+    <p><strong>IRC 服务器</strong></p>
+
+    <p>每个 IRC 网络由多个 IRC 服务器互相连接形成.</p>
+
+    <p>假设 <code class="highlighter-rouge">freenode</code> 由 A,B,C 三台服务器互联而成,
+  那么你随意连接到其中一台便意味着你连接上了 <code class="highlighter-rouge">freenode</code> 网络, 便可进入其中的聊天室聊天</p>
+  </li>
+  <li>
+    <p><strong>IRC 聊天室</strong></p>
+
+    <p>当你连接到 IRC 网络后(比如 <code class="highlighter-rouge">freenode</code>), 便可以进入网络上的聊天室进行聊天.</p>
+
+    <p>聊天室多以主题为名, 如 <code class="highlighter-rouge">#javascript</code>, <code class="highlighter-rouge">#php</code>, <code class="highlighter-rouge">#porn</code>, <code class="highlighter-rouge">#hacker</code> 等</p>
+
+    <p>并不是所有的聊天都可以任意进入,
+  有些聊天室只能被邀请进入, 有些聊天室只允许已经注册昵称的用户进入, 等等</p>
+  </li>
+  <li>
+    <p><strong>昵称</strong></p>
+
+    <p>在聊天室, 昵称即你的显示名字, 比如我在 <code class="highlighter-rouge">freenode</code> 的注册昵称就是 <code class="highlighter-rouge">UniFreak</code></p>
+  </li>
+  <li>
+    <p><strong>IRC 客户端</strong></p>
+
+    <p>连接到 IRC 网络需要对应的客户端(就好比浏览网页需要网页客户端, 即浏览器一样)</p>
+
+    <p>知名的客户端有 mIRC, xChat, HexChat 等</p>
+
+    <p>下载 HexChat: https://hexchat.github.io/downloads.html</p>
+  </li>
+  <li>
+    <p><strong>IRC 命令</strong></p>
+
+    <p>使用 IRC 必须掌握几个必须的命令, 命令以 / 开头, 如:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>示例命令</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="highlighter-rouge">/server irc.freenode.net</code></td>
+          <td>连接到 <code class="highlighter-rouge">freenode</code> 网络</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">/nick myName</code></td>
+          <td>更换昵称为 myName</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">/msg nickserv register password me@163.com</code></td>
+          <td>注册昵称, 密码为 password, 邮箱为 me@163.com</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">/join #java</code></td>
+          <td>进入 #java 聊天室</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>…等等</p>
+  </li>
+</ul>
+
+<h1 id="section-1">示例</h1>
+
+<ol>
+  <li>
+    <p>安装 hexChat</p>
+  </li>
+  <li>
+    <p>配置网络</p>
+
+    <p>首次打开 hexChat 会自动弹出网络配置窗口. 
+ 也可以使用菜单 <code class="highlighter-rouge">HexChat</code>-&gt;<code class="highlighter-rouge">Network Lists</code> 打开该窗口</p>
+
+    <p><img src="/images/posts/201604/hexChatServerlist.png" alt="配置窗口" /></p>
+
+    <p>填写自己想要的昵称</p>
+
+    <p>在 <code class="highlighter-rouge">Networks</code> 的列表中点选 <code class="highlighter-rouge">freenode</code>, 然后点击 <code class="highlighter-rouge">Connect</code> 连接到 <code class="highlighter-rouge">freenode</code></p>
+  </li>
+  <li>
+    <p>连接成功后会弹出此窗口</p>
+
+    <p><img src="/images/posts/201604/hexChatConnSuccess.png" alt="连接成功" /></p>
+
+    <p>取消选中 <code class="highlighter-rouge">always show this ...</code>, 点击 <code class="highlighter-rouge">OK</code></p>
+  </li>
+  <li>
+    <p>现在来到主界面</p>
+
+    <p><img src="/images/posts/201604/hexChatUI.png" alt="主界面" /></p>
+
+    <p>输入 <code class="highlighter-rouge">/msg NickServ register &lt;password&gt; &lt;email&gt;</code> 以注册当前昵称</p>
+
+    <p><strong>注意</strong>: 把 <code class="highlighter-rouge">&lt;password&gt;</code> 换成你自己的密码, 把 <code class="highlighter-rouge">&lt;email&gt;</code> 换成你自己的邮箱地址</p>
+  </li>
+  <li>
+    <p>进入邮箱, 收取邮件. 把邮件中给你的命令粘贴到消息输入框, 回车, 以完成验证</p>
+  </li>
+  <li>
+    <p>现在输入命令 <code class="highlighter-rouge">/join #irc</code> 以加入 #irc 聊天室, 在这里你可以问任何有关 irc 的问题. 当然你也可以加入其它感兴趣的聊天室.</p>
+  </li>
+  <li>
+    <p>开始聊天</p>
+  </li>
+</ol>
+
+            </div>
+
+            <div id="markdown-outline" class="col-lg-3">
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'unifreak-github';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+    
+<footer id="l-footer">
+    <div class="container">
+        <div class="row">
+            <div id="contact" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-9">
+                <h3>CONTACT</h3>
+                <div class="row">
+                    <address id="address" class="col-lg-6 col-md-6 col-sm-6">
+                          <br>
+                        , <br>
+                        <br>
+                        <br>
+                    </address>
+
+                    <ul class="col-lg-6 col-md-6 col-sm-6">
+                        <li class="qq"><i class="fa fa-qq"></i> &nbsp;&nbsp;</li>
+                        <li class="email"><i class="fa fa-envelope"></i> <a href="mailto:"> &nbsp;&nbsp;</a></li>
+                        <li class="tel"><i class="fa fa-mobile"></i> <a href="tel:15671542698">&nbsp;&nbsp; </a></li>
+                        <li class="github"><i class="fa fa-github"></i> <a href=""> &nbsp;&nbsp;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="rss" class="col-lg-2 col-md-2 col-sm-2">
+                    <h3>SUBSCRIBE<br>
+                    via</h3>
+                <a href="feed.xml">
+                    <i class="rss fa fa-rss-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <p id="legal">
+            Copyright (c) 2015  | Powered by <a href="http://jekyllrb.com">Jekyll</a> &amp; <a href="http://github.com">GitHub</a> | designed &amp; build by <a href="http://unifreak.github.io">UniFreak</a>
+        </p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="http://example.comjavascripts/base.js"></script>
+
+
+<!-- 百度统计 -->
+<script type="text/javascript" src="http://example.comjavascripts/baidu_statistics.js"></script>
+
+
+    <script type="text/javascript" src="http://example.comjavascripts/markdownreader.js"></script>
+</body>
+</html>

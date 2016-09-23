@@ -1,0 +1,1769 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="阅读 PHP 参考文档时做的笔记和整理. 为整个 PHP 语法提供一个简明的地图. 在面试前或者平时浏览一遍, 以便检查自己是否遗忘了某些重要的 PHP 及基本特性">
+
+<title>笔记 - PHP 语法</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="http://example.comfavicon.ico" type="image/icon">
+<link rel="icon" href="http://example.comfavicon.ico" type="image/icon">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/base.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/simplePagination.css">
+
+<script type="text/javascript" src="http://example.comjavascripts/jquery.js"></script>
+
+<!--[if lt IE 9]>
+<script src="http://example.comjavascripts/html5shiv.js"></script>
+<![endif]-->
+    <link rel="stylesheet" type="text/css" href="http://example.comstylesheets/markdownreader.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/pygments_monokai.css">
+<link rel="stylesheet" type="text/css" href="http://example.comstylesheets/code_block.css">
+</head>
+
+<body>
+    <header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <div class="col-lg-7">
+                <h1></h1>
+            </div>
+
+
+            <div class="col-lg-5">
+                <p>On the way to death</p>
+                <p>On the way of learning</p>
+            </div>
+        </div>
+
+        <div class="row navicon">
+            <a href=""><i class="fa fa-navicon"></i></a>
+        </div>
+
+        <div class="row navbar">
+            <nav class="col-lg-8 col-md-8 col-xs-12">
+                <ul class="row">
+                    <li class="col-lg-3"><a href="http://example.com">HOME</a></li>
+                    <li class="col-lg-3">
+                        <ul class="subnav">
+                            <a href="javascript:void(0)">POST</a>
+                            <li><a href="http://example.comcategory">CATEGORY</a></li>
+                            <li><a href="http://example.comtag">TAG</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-lg-3"><a href="http://example.comabout">ABOUT</a></li>
+                    <li class="col-lg-3"><a href="http://example.combuilding">PLAY GROUND</a></li>
+                </ul>
+            </nav>
+
+            <div class="search col-lg-4 col-md-4 col-xs-12">
+                <form id="dummySearch">
+                    <label for="search"></label>
+                    <input id="search" name="serach" type="text" placeholder="Not That Dummy Search">
+                    <i class="fa fa-search"></i>
+                </form>
+                <script>
+                $(function(){
+                    $('#dummySearch').submit(function(e) {
+                        e.preventDefault();
+                        keyword = $('#search').val();
+                        url = 'https://www.google.com.hk/search?q=site%3Aunifreak.github.io+' + keyword;
+                        location.href = url;
+                    })
+                })
+                </script>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="container">
+        <div class="row">
+            <div id="markdown-container" class="col-lg-9">
+                <header>
+                    <p id="postTitle">笔记 - PHP 语法</p>
+                    
+                    <ul class="tags clearfix">
+                        
+                        <li><i class="fa fa-tag"></i> php</li>
+                        
+                        <li><i class="fa fa-tag"></i> syntax</li>
+                        
+                    </ul>
+                    
+                    <p id="postMeta">posted on 22 Jul 2016 under category <a href="http://example.comcategory/">note</a></p>
+
+                </header>
+
+                <p>#关键字</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>abstract    and          array()     as          break
+case        catch        class       clone       const
+continue    declare      default     do          else
+elseif      enddeclare   endfor      endforeach  endif
+endswitch   endwhile     extends     final       for
+foreach     function     global      goto        if
+implements  interface    instanceof  namespace   new
+or          private      protected   public      static
+switch      throw        try         use         var
+while       xor
+</code></pre>
+</div>
+
+<p>#起始结束标记</p>
+
+<ul>
+  <li>标准风格(推荐): <code class="highlighter-rouge">&lt;?php   ?&gt;</code>. 如果 <code class="highlighter-rouge">?&gt;</code> 后面就是文档结束, 推荐省略这个 <code class="highlighter-rouge">?&gt;</code>, 否则在某些情况下会报错</li>
+  <li>短风格: <code class="highlighter-rouge">&lt;?      ?&gt;</code></li>
+  <li>asp 风格: <code class="highlighter-rouge">&lt;%      %&gt;</code></li>
+  <li>长风格: <code class="highlighter-rouge">&lt;script language="php"&gt;     &lt;/script&gt;</code></li>
+  <li>直接输出变量(和 <code class="highlighter-rouge">XML</code> 标签有冲突): <code class="highlighter-rouge">&lt;?= $var ?&gt;</code></li>
+</ul>
+
+<p>#语句分隔符  : <code class="highlighter-rouge">;</code></p>
+
+<ul>
+  <li>结构定义语句 别加</li>
+  <li>功能执行语句 要加</li>
+</ul>
+
+<p>#注释</p>
+
+<p>注释要写在代码上面或右面</p>
+
+<ul>
+  <li>单行注释: <code class="highlighter-rouge">//</code></li>
+  <li>多行注释: <code class="highlighter-rouge">/*  */</code></li>
+  <li>脚本注释: <code class="highlighter-rouge">#</code></li>
+  <li>文档注释: <code class="highlighter-rouge">/**  */</code></li>
+</ul>
+
+<p>#大小写</p>
+
+<ul>
+  <li>变量名, 常量名, 成员变量名__区分__大小写</li>
+  <li>函数名, 类名, 成员方法名__不区分__大小写</li>
+</ul>
+
+<p><em>note</em>: 给 <code class="highlighter-rouge">define()</code> 传递第三个参数 <code class="highlighter-rouge">true</code> 会让常量区分大小写</p>
+
+<p>#变量</p>
+
+<p>##声明 (弱类型)</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$varName</span> <span class="o">=</span> <span class="nx">varValue</span><span class="p">;</span>
+<span class="nv">$var1</span> <span class="o">=</span> <span class="nv">$var2</span> <span class="o">=</span> <span class="nv">$var3</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>##命名</p>
+
+<ul>
+  <li>不能以数字开头或使用运算符</li>
+  <li>可以使用关键字</li>
+  <li>使用小驼峰命名法</li>
+  <li>要有意义</li>
+</ul>
+
+<p>##可变变量</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$var1</span> <span class="o">=</span> <span class="nv">$$var2</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>为避免产生类似 <code class="highlighter-rouge">$$var[1]</code> 的困惑, 使用大括号像这样分隔</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="err">$</span><span class="p">{</span><span class="nv">$var</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span> <span class="c1">// 或 
+</span><span class="nv">${$var}</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>##赋值</p>
+
+<ul>
+  <li>
+    <p>值赋值</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $var1 = 10;
+  $var2 = var1;           // 将 var1 的值赋给 var2
+  $var1 = 100;            // var1 = 100; var2 = 10(不变)
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>引用赋值</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $var1 = 10;
+  $var2 = &amp; var1;         // 使用 "&amp;", 将 var1 地址给 var2, 此时 
+                          // var1 和 var2 都指向同一个地址
+  $var1 = 100;            // var1 = 100; var2 = 100
+  ?&gt;
+ </code></p>
+  </li>
+</ul>
+
+<p>##类型</p>
+
+<h3 id="section">标量</h3>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">integer</code> (4个字节)</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $int = 10;   // 十进制
+  $int = 045;  // 八进制(以0开头)
+  $int = 0xff; // 十六进制(以0x开头)
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">bool</code>, <code class="highlighter-rouge">boolean</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">float</code>, <code class="highlighter-rouge">double</code>, <code class="highlighter-rouge">real</code> (8个字节)</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $float = 3.14E-2; // 科学计数法                 
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">string</code></p>
+
+    <ul>
+      <li>
+        <p>单引号: <code class="highlighter-rouge">$str = 'aaa';</code></p>
+
+        <p>不解析变量, 不能使用转义字符(除单引号和转义字符)
+  如非必要, 推荐使用单引号, 因为不用解析变量, 消耗资源较少</p>
+      </li>
+      <li>
+        <p>双引号: <code class="highlighter-rouge">$str = "aaa";</code></p>
+
+        <p>会解析变量(用<code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="p">}</span></code>来分隔), 能使用转义字符</p>
+      </li>
+      <li>
+        <p>反引号: <code>$str = `aaa`;</code></p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">HEREDOC</code></p>
+
+        <p>解析变量, 定界符可以带双引号, 也可以不带, 如 <code class="highlighter-rouge">&lt;&lt;&lt;HERE</code> 或 <code class="highlighter-rouge">&lt;&lt;&lt;"HERE"</code></p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">NOWDOC</code></p>
+
+        <p>不解析变量, 定界符必须带单引号, 如 <code class="highlighter-rouge">&lt;&lt;&lt;'NOW'</code>, 但结尾定界符不用单引号</p>
+
+        <p>结尾定界符必须顶行, 并且以 <code class="highlighter-rouge">;</code> + <code class="highlighter-rouge">换行</code> 或 <code class="highlighter-rouge">换行</code> 结尾</p>
+      </li>
+    </ul>
+
+    <p><em>note</em>: <code class="highlighter-rouge">String</code> 类型中的单个字符可以用 <code class="highlighter-rouge"><span class="p">{}</span></code> 或 <code class="highlighter-rouge">[]</code> 访问, 如:</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $str = 'str';
+  echo $str{0}; // 或 $str[0]
+  ?&gt;
+ </code></p>
+  </li>
+</ul>
+
+<p>###复合</p>
+
+<ul>
+  <li><code class="highlighter-rouge">array</code>: 数组</li>
+  <li><code class="highlighter-rouge">object</code>: 对象</li>
+</ul>
+
+<p>###特殊</p>
+
+<ul>
+  <li><code class="highlighter-rouge">resource</code>: 代表要操作的资源(文件, 图片等)本身</li>
+  <li><code class="highlighter-rouge">null</code>: 如果一个变量值为 <code class="highlighter-rouge">null</code>, 则代表这个变量不存在, <code class="highlighter-rouge">isset()</code> 返回 <code class="highlighter-rouge">false</code></li>
+</ul>
+
+<p>##转换</p>
+
+<p>###强制</p>
+
+<ul>
+  <li>会改变原变量类型: <code class="highlighter-rouge">setType($var, type)</code></li>
+  <li>不会改变原变量类型:
+    <ul>
+      <li><code class="highlighter-rouge">(int)</code>, <code class="highlighter-rouge">(integer)</code>, <code class="highlighter-rouge">(bool)</code>, <code class="highlighter-rouge">(boolean)</code>, <code class="highlighter-rouge">(float)</code>, <code class="highlighter-rouge">(double)</code>, <code class="highlighter-rouge">(real)</code>, <code class="highlighter-rouge">(string)</code>, <code class="highlighter-rouge">(binary)</code>, <code class="highlighter-rouge">(array)</code>, <code class="highlighter-rouge">(object)</code>, <code class="highlighter-rouge">(unset)</code></li>
+      <li><code class="highlighter-rouge">intval()</code>, <code class="highlighter-rouge">floatval()</code>, <code class="highlighter-rouge">strval()</code>, <code class="highlighter-rouge">doubleval()</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>###自动</p>
+
+<ul>
+  <li>
+    <p>转到 <code class="highlighter-rouge">BOOLEAN</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">0</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">0.0</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">""</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">" "</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">"0"</code></td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td>空数组</td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td>空对象</td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td>NULL</td>
+          <td><code class="highlighter-rouge">FALSE</code></td>
+        </tr>
+        <tr>
+          <td>其他</td>
+          <td><code class="highlighter-rouge">TRUE</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>转到 <code class="highlighter-rouge">INT</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>布尔</td>
+          <td><code class="highlighter-rouge">FALSE</code> -&gt; <code class="highlighter-rouge">0</code>,  <code class="highlighter-rouge">TRUE</code> -&gt; <code class="highlighter-rouge">1</code></td>
+        </tr>
+        <tr>
+          <td>浮点数</td>
+          <td>向零取整</td>
+        </tr>
+        <tr>
+          <td>字符串</td>
+          <td>以合法的数字开始则为这个数字, 否则就是 <code class="highlighter-rouge">0</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>转到 <code class="highlighter-rouge">FLOAT</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>字符串</td>
+          <td>以合法的数字开始则为这个数字, 否则就是 <code class="highlighter-rouge">0</code></td>
+        </tr>
+        <tr>
+          <td>其他</td>
+          <td>先转换为 <code class="highlighter-rouge">INT</code>, 再转换为 <code class="highlighter-rouge">FLOAT</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>转到 <code class="highlighter-rouge">STRING</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>布尔</td>
+          <td><code class="highlighter-rouge">FLASE</code> -&gt; <code class="highlighter-rouge">""</code>, <code class="highlighter-rouge">TRUE</code> -&gt; <code class="highlighter-rouge">"1"</code></td>
+        </tr>
+        <tr>
+          <td>数组</td>
+          <td><code class="highlighter-rouge">"Array"</code></td>
+        </tr>
+        <tr>
+          <td>对象</td>
+          <td><code class="highlighter-rouge">"Object"</code></td>
+        </tr>
+        <tr>
+          <td>资源</td>
+          <td><code class="highlighter-rouge">"Resource id #n"</code></td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">NULL</code></td>
+          <td><code class="highlighter-rouge">""</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>转到 <code class="highlighter-rouge">ARRAY</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>任意类型</td>
+          <td>一个仅有一个元素的数组</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>转到 <code class="highlighter-rouge">OBJECT</code></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>从</th>
+          <th>转换结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>从任意类型</td>
+          <td>实例化一个内置类 <code class="highlighter-rouge">stdClass</code> 的对象</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">NULL</code></td>
+          <td>新的实例为空</td>
+        </tr>
+        <tr>
+          <td>数组</td>
+          <td>键名成为属性名并具有相对应的值</td>
+        </tr>
+        <tr>
+          <td>其它的值</td>
+          <td>名为 <code class="highlighter-rouge">scalar</code> 的成员变量将包含该值</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>##作用域</p>
+
+<ul>
+  <li>
+    <p>局部</p>
+
+    <p>在函数内声明, 只能在自己的函数内部使用</p>
+
+    <p>参数就是局部变量, 这个局部变量可以调用时赋值</p>
+  </li>
+  <li>
+    <p>全局</p>
+
+    <p>在函数外声明, 可用于声明语句后的整个脚本</p>
+
+    <p>*如果在函数内使用, 必须用 <code class="highlighter-rouge">global</code> 关键字包含之, 或者使用 <code class="highlighter-rouge">$GLOBALS</code> 超全局数组</p>
+  </li>
+  <li>
+    <p>静态(<code class="highlighter-rouge">static</code>) <em>不要和类中的静态相混淆</em></p>
+
+    <p>也是局部的, 但是函数调用完毕, 其值不会丢失</p>
+
+    <p>静态变量可以在同一个函数的多次调用中共用</p>
+  </li>
+</ul>
+
+<p>#常量</p>
+
+<p>*常量定义后不能改变, 也不能用 <code class="highlighter-rouge">unset()</code> 取消</p>
+
+<p>*常量(和变量不一样)不用理会作用域的限制, 在任何地方都可以使用</p>
+
+<p>习惯使用大写</p>
+
+<p><code class="highlighter-rouge">&lt;5.5</code>: 只能包含标量类型</p>
+
+<p><code class="highlighter-rouge">5.6</code>: 可以使用包括数值, 字符串字面量以及其他常量在内的数值表达式来定义常量, 声明属性以及设置函数参数默认值, 也可使用 <code class="highlighter-rouge">const</code> 定义类型为 <code class="highlighter-rouge">array</code> 的常量</p>
+
+<ul>
+  <li>
+    <p>定义</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  // 1. define:
+  define("CONSTANT_NAME", 'constantValue');
+  // 2. const:必须处于最顶端的作用区域, &lt;5.3: 只能用于类中
+  const CONSTANT_NAME = 'constantValue';
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>获取</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  // 1. defined(): 判断常量是否定义
+  defined("constantName");
+  // 2. constant(): 获取常量名为 constName 的常量值
+  constant('constName');
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>魔术常量</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">__DIR__</code>: 当前文件完整路径</li>
+      <li><code class="highlighter-rouge">__FILE__</code>: 当前文件完整路径及文件名</li>
+      <li><code class="highlighter-rouge">__NAMESPACE__</code>: 当前命名空间名称</li>
+      <li><code class="highlighter-rouge">__CLASS__</code>: 类名</li>
+      <li><code class="highlighter-rouge">__METHOD__</code>: 类的方法名</li>
+      <li><code class="highlighter-rouge">__FUNCTION__</code>: 函数名</li>
+      <li><code class="highlighter-rouge">__LINE__</code>: 当前行号</li>
+    </ul>
+  </li>
+  <li>
+    <p>常用预定义常量</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">PHP_EOL</code></li>
+      <li><code class="highlighter-rouge">PHP_OS</code></li>
+      <li><code class="highlighter-rouge">PHP_VERSION</code></li>
+      <li><code class="highlighter-rouge">DEFAULT_INCLUDE_PATH</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>#运算符</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>运算符</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>算数</td>
+      <td><code class="highlighter-rouge">+   -   *   /   %   ++  -- **</code></td>
+      <td><code class="highlighter-rouge">**</code> 从 5.6 才有</td>
+    </tr>
+    <tr>
+      <td>连接</td>
+      <td><code class="highlighter-rouge">.</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>赋值</td>
+      <td><code class="highlighter-rouge">=   +=  -=  *=  /=  .=  %= **=</code></td>
+      <td><code class="highlighter-rouge">**=</code> 从 5.6 才有</td>
+    </tr>
+    <tr>
+      <td>位</td>
+      <td><code>&amp;   |   ~   ^   &lt;&lt;  &gt;&gt;</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>比较, 关系, 条件</td>
+      <td><code class="highlighter-rouge">==  === !=或&lt;&gt;   !== &gt;   &lt;   &gt;=  &lt;=</code></td>
+      <td><code class="highlighter-rouge">&lt;&gt;</code> aka ‘pulp fiction’</td>
+    </tr>
+    <tr>
+      <td>逻辑</td>
+      <td><code>&amp;&amp;  ||  !   and  or xor</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>错误抑制</td>
+      <td><code class="highlighter-rouge">@</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>执行</td>
+      <td><code>``</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>类型</td>
+      <td><code class="highlighter-rouge">instanceof</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>其他</td>
+      <td><code class="highlighter-rouge">? :     =&gt;  -&gt;  ::  &amp;   $</code></td>
+      <td><code class="highlighter-rouge">::</code> aka ‘paamayim nekudotayim’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>使用 <code class="highlighter-rouge">&amp;&amp;</code> 或 <code class="highlighter-rouge">||</code> 会发生短路, 使用 <code class="highlighter-rouge">&amp; </code>或 <code class="highlighter-rouge">|</code> 则不会</p>
+
+<p>使用短路, 也可以控制代码流程</p>
+
+<p>*<code class="highlighter-rouge">&amp;&amp;</code> 与 <code class="highlighter-rouge">and</code>, <code class="highlighter-rouge">||</code> 与 <code class="highlighter-rouge">or</code> 的区别:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// "||" 的优先级比 "or" 高
+</span><span class="nv">$e</span> <span class="o">=</span> <span class="kc">false</span> <span class="o">||</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// $e 被赋值为 (false || true)，结果为 true
+</span><span class="nv">$f</span> <span class="o">=</span> <span class="kc">false</span> <span class="k">or</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// $f 被赋值为 false ("=" 的优先级比 "or" 高)
+</span>
+<span class="c1">// "&amp;&amp;" 的优先级比 "and"　高
+</span><span class="nv">$g</span> <span class="o">=</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// $g 被赋值为 (true &amp;&amp; false)，结果为 false
+</span><span class="nv">$h</span> <span class="o">=</span> <span class="kc">true</span> <span class="k">and</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// $h 被赋值为 true ("=" 的优先级比 "and" 高)
+</span><span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>#流程控制</p>
+
+<ul>
+  <li>顺序结构</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>分支(条件</td>
+          <td>选择)结构</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>单路分支</p>
+
+        <p><code class="highlighter-rouge">php
+  &lt;?php
+  if() { }
+  ?&gt;
+ </code></p>
+      </li>
+      <li>
+        <p>双路分支</p>
+
+        <p><code class="highlighter-rouge">php
+  &lt;?php
+  if() { } else { }
+  ?&gt;
+ </code></p>
+      </li>
+      <li>
+        <p>多路分支</p>
+
+        <p>```php
+  &lt;?php
+  if() { }… elseif() { }… else { }
+  switch(变量) {      // 变量最好只用整形和字符串
+      case 变量值:    // 各个 case 都是互斥的,  可以利
+          code…;    // 用此特性简写一些条件判断
+          break;      // 跳出循环. 可以利用 break 匹配多种情况
+      case 变量值:
+          code…;    // 如果 case 的语句为空, 则将控制转移到下一个 
+                      // case, 实现多个 case 共用一段代码
+          break;
+      …
+      default:        // 默认执行的语句
+          code…;
+  }
+  foreach() { }</p>
+
+        <p>if…else…        // 适用于范围条件
+  switch…case       // 适用于定点值条件
+  foreach…          // 适用于数组
+  ?&gt;
+  ```</p>
+      </li>
+      <li>
+        <p>三目运算符</p>
+
+        <p><code class="highlighter-rouge">php
+  &lt;?php
+  boolean ? true_value : false_value
+  ?&gt;
+ </code></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>循环结构</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">while</code>, <code class="highlighter-rouge">do...while</code>: 通常用于条件循环</li>
+      <li><code class="highlighter-rouge">for</code>: 通常用于计数循环</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">break</code>: 退出剩余循环</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  break 1;                // 默认, 退出一层循环
+  break 2;                // 退出两层循环
+                          // 以此类推
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">continue</code>: 跳过本次循环</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  continue 1;
+  continue 2;
+  // 以此类推
+  ?&gt;
+ </code></p>
+  </li>
+  <li>*<code class="highlighter-rouge">declare (directive)</code></li>
+</ul>
+
+<p>#数组</p>
+
+<p>##分类</p>
+
+<ul>
+  <li>索引数组: 索引为整数</li>
+  <li>关联数组: 索引为字符串</li>
+</ul>
+
+<p><em>note</em>: 如果你要使用浮点作为键, 使用字符串形式如 ‘1.5’, ‘1.6’. 否则 php 会向下取整, 这样 1.5 和 1.6 便都为 1</p>
+
+<p>##声明</p>
+
+<ul>
+  <li>使用 <code class="highlighter-rouge">array()</code> 函数</li>
+  <li>5.4: 使用 <code class="highlighter-rouge">[]</code></li>
+  <li>直接给元素赋值: 如果不指定索引, 则为之前最大整数索引加一; 如果指定的索引和之前重复, 则视为重新赋值</li>
+</ul>
+
+<p>##访问</p>
+
+<ul>
+  <li>使用 <code class="highlighter-rouge">[]</code></li>
+  <li>使用 <code class="highlighter-rouge"><span class="p">{}</span></code></li>
+</ul>
+
+<p>##遍历</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">for</span><span class="p">()</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>                                           <span class="c1">// 有很多限制
+</span><span class="k">foreach</span><span class="p">(</span> <span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span> <span class="p">)</span> <span class="p">{</span> <span class="o">...</span>  <span class="p">}</span>                <span class="c1">// 首选
+</span><span class="k">while</span><span class="p">(</span> <span class="k">list</span><span class="p">(</span> <span class="nv">$key</span><span class="p">,</span><span class="nv">$val</span> <span class="p">)</span> <span class="o">=</span> <span class="nb">each</span><span class="p">(</span> <span class="nv">$user</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>      <span class="c1">// 效率更高
+</span><span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>使用  <code class="highlighter-rouge">next()</code> <code class="highlighter-rouge">prev()</code> <code class="highlighter-rouge">reset()</code> <code class="highlighter-rouge">end()</code> <code class="highlighter-rouge">current()</code> 可以操作数组指针</p>
+
+<p>##数组指针</p>
+
+<ul>
+  <li>
+    <p>数组赋值</p>
+
+    <p>数组在赋值时, 如果赋值数组的数组指针已经指向了数组末尾则赋值之后赋值数组的数组指针会被重置; 如果在赋值时赋值数组的数组指针没有指向数组末尾而是指向了任何一个有效的数组元素, 那么在赋值之后赋值数组的数组指针是不会被重置的, 而是保留其原来指向的元素</p>
+  </li>
+  <li>
+    <p>数组传参</p>
+
+    <p>如果实参内部指针的位置指向了数组末尾, 那么系统会将形参的内部指针重置, 指向形参数组的第一个单元; 如果实参内部指针的位置不在数组末尾, 即指向了有效的单元, 那么系统会将形参的数组指针位置与实参的数组指针指向值相同的数组单元</p>
+  </li>
+</ul>
+
+<p>#函数</p>
+
+<ul>
+  <li>
+    <p>定义</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  function 函数名(形参, 形参 , ...) {
+      函数体
+      return 返回值;
+  }
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>定义可变数量的参数列表</p>
+
+    <ul>
+      <li>
+        <p>&lt;5.5:</p>
+
+        <p>使用 <code class="highlighter-rouge">func_num_args()</code>, <code class="highlighter-rouge">func_get_args()</code>, <code class="highlighter-rouge">func_get_arg()</code></p>
+      </li>
+      <li>
+        <p>5.6:</p>
+
+        <p>也可以使用 <code class="highlighter-rouge">...</code>, 参数会以数组形式传入函数</p>
+
+        <p>相应的在调用函数时, 使用 <code class="highlighter-rouge">...</code> 运算符, 将数组和可遍历对象展开为函数参数</p>
+
+        <p><code class="highlighter-rouge">...</code> 参数支持 typehint</p>
+      </li>
+      <li>
+        <p>为可选的参数赋默认值, 在函数体中做判断</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>PHP 中的所有函数和类都具有全局作用域, 可以在内部定义外部调用, 反之亦然</p>
+
+<p>PHP 不支持函数重载, 也不可能取消定义或者重定义已声明的函数</p>
+
+<p>*带默认值的参数的默认值必须是常量表达式, 不能是诸如变量, 类成员, 或者函数调用等表达式</p>
+
+<p>*当使用默认参数时, 任何默认参数必须放在任何非默认参数的右侧</p>
+
+<p>*少传参数会报错(除非少传的是有默认值的参数), 多传参数则不会</p>
+
+<p>函数不能返回多个值, 但可以通过返回一个数组来得到类似的效果; 总是返回值是一个好习惯</p>
+
+<p>从函数返回一个引用, 必须在函数声明和指派返回值给一个变量时都使用引用操作符 <code class="highlighter-rouge">&amp;</code></p>
+
+<p>PHP 支持可变函数的概念. 这意味着如果一个变量名后有圆括号, PHP 将寻找与变量的值同名的函数, 并且尝试执行它</p>
+
+<p>*如果函数未执行完时就递归调用自己, 则当执行完最深一层后, 会层层回退到上一层继续执行完</p>
+
+<p>*缺省情况下, 函数参数通过值传递(因而即使在函数内部改变参数的值, 它并不会改变函数外部的值).</p>
+
+<p>如果希望允许函数修改它的参数值，必须通过引用传递参数</p>
+
+<p>#类与对象</p>
+
+<p>##类</p>
+
+<p>###声明</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="err">类名</span>        <span class="err">//</span> <span class="err">`</span><span class="nc">stdClass</span><span class="sb">` 和 `</span><span class="nx">__PHP_Incomplete_Class</span><span class="err">`</span> <span class="err">为</span> <span class="nx">PHP</span> <span class="err">保留字</span>
+<span class="p">{</span>
+    <span class="err">成员属性</span>      <span class="c1">// 定义成员属性必须使用 $, 访问成员属性不用使用 $ 符号
+</span>                 <span class="o">*//</span> <span class="err">属性中的变量可以初始化</span><span class="p">,</span> <span class="err">但是初始化的值必须是常数</span>
+    <span class="err">成员方法</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>###命名</p>
+
+<p>命名法:</p>
+
+<ul>
+  <li>PascalCase</li>
+  <li>camelCase</li>
+  <li>snake_case</li>
+</ul>
+
+<p>一个文件包含一个类, 文件名以 <code class="highlighter-rouge">类名.class.php</code> 命名</p>
+
+<p>###访问控制关键字</p>
+
+<ul>
+  <li><code class="highlighter-rouge">public</code>: 可以在任何地方被访问</li>
+  <li><code class="highlighter-rouge">protected</code>: 可以被其所在类及其子类和父类访问</li>
+  <li><code class="highlighter-rouge">private</code>: 只能被其所在类访问</li>
+</ul>
+
+<p>###继承( PHP 是单继承的 )</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">extends</code> 关键字:</p>
+
+    <p>子类中声明和父类相同的方法名, 会覆盖父类的方法(PHP 意义上的重载), 如果要在子类中访问父类中被覆盖的方法, 可以使用 <code class="highlighter-rouge">parent::方法名()</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">final</code> 关键字</p>
+
+    <p>父类中的方法被声明为 <code class="highlighter-rouge">final</code>, 则子类无法覆盖该方法</p>
+
+    <p>如果一个类被声明为 <code class="highlighter-rouge">final</code>, 则不能被继承</p>
+  </li>
+</ul>
+
+<p>###<code class="highlighter-rouge">static</code> 关键字: 静态属性/方法</p>
+
+<p>*定义静态(类)属性和方法, 使用 <code class="highlighter-rouge">::</code> 访问</p>
+
+<p>*定义和访问静态属性需要使用 <code class="highlighter-rouge">$</code> 符号</p>
+
+<p>*静态方法访问方式:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">类::方法</code></li>
+  <li><code class="highlighter-rouge">实例-&gt;方法</code></li>
+</ol>
+
+<p>*静态属性访问方式:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">类::属性</code></li>
+  <li><code class="highlighter-rouge">实例::$属性</code></li>
+</ol>
+
+<p>存储于数据段中, 用于让所有该类的对象共享该成员</p>
+
+<p>不用实例化类即可访问, 所以 <code class="highlighter-rouge">$this</code>(可以使用 <code class="highlighter-rouge">self</code>) 在静态方法中不可用, 也不能在静态方法中访问非静态成员</p>
+
+<p>不能通过一个对象来访问其中的静态成员(静态方法除外)</p>
+
+<p>*对静态属性的改变, 会反映到所有父类和子类中</p>
+
+<p>如果所有类的对象的属性值要保持同一, 或确保方法不会使用非静态属性, 则可以声明为静态成员</p>
+
+<p><code class="highlighter-rouge">static</code> 关键字应放在 3P 后面</p>
+
+<p>*你可以把静态属性初始化为整型或数组, 但不能指向另一个变量或函数返回值，也不能指向一个对象</p>
+
+<p>###<code class="highlighter-rouge">const</code> 关键字: 类常量</p>
+
+<p>*声明类常量, 定义和使用时都不需要 <code class="highlighter-rouge">$</code> 符号, 使用 <code class="highlighter-rouge">&lt;类名&gt;::</code> 访问</p>
+
+<p>与静态属性的不同: 静态属性可以修改, 但类常量不可以</p>
+
+<p>##抽象类(由 <code class="highlighter-rouge">abstract</code> 定义, <code class="highlighter-rouge">extends</code> 继承)</p>
+
+<ul>
+  <li>至少要包含一个抽象方法(由 <code class="highlighter-rouge">abstract</code> 修饰, 没有方法体, 用 <code class="highlighter-rouge">;</code> 结束), 其他和一般类相同</li>
+  <li>不能直接被实例化, 必须先继承该抽象类, 然后再实例化子类</li>
+  <li>子类必须实现抽象类中的所有抽象方法, 这些方法的可见性必须和抽象类中一样或者更为宽松</li>
+  <li><code class="highlighter-rouge">abstract</code> 关键字应该放到 3P 前面</li>
+</ul>
+
+<p>##接口(由 <code class="highlighter-rouge">interface</code> 定义, <code class="highlighter-rouge">extends</code> 继承, <code class="highlighter-rouge">implements</code> 实现)</p>
+
+<ul>
+  <li>指定某个类必须实现哪些方法, 但其中定义所有的方法都是空的, 而且必须为 <code class="highlighter-rouge">public</code></li>
+  <li>*不能在接口中声明成员属性, 但可以声明接口常量</li>
+  <li>一个类可以实现多个接口( <code class="highlighter-rouge">,</code> 分开), 弥补单继承缺点</li>
+  <li>实现多个接口时, 接口中的方法不能有重名</li>
+</ul>
+
+<p>##对象</p>
+
+<ul>
+  <li>
+    <p>实例化: <code class="highlighter-rouge">$变量名 = new 类名()</code></p>
+  </li>
+  <li>
+    <p>成员访问</p>
+
+    <ul>
+      <li>在对象外: <code class="highlighter-rouge">-&gt;</code> 操作符</li>
+      <li>在对象内: <code class="highlighter-rouge">$this</code> 伪变量</li>
+    </ul>
+  </li>
+  <li>
+    <p>序列化: <code class="highlighter-rouge">serialize()</code> 和 <code class="highlighter-rouge">unserialize</code></p>
+
+    <p>将一个对象转换为一个包含字节流的字符串或反之</p>
+
+    <p>用于将对象长时间保存在数据库或文件中, 或者在多个 php 文件间传输时</p>
+  </li>
+  <li>
+    <p>比较</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>比较内容</th>
+          <th><code class="highlighter-rouge">==</code></th>
+          <th><code class="highlighter-rouge">===</code></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>引用</td>
+          <td><code class="highlighter-rouge">true</code></td>
+          <td><code class="highlighter-rouge">true</code></td>
+        </tr>
+        <tr>
+          <td>有相同属性值的两个实例</td>
+          <td><code class="highlighter-rouge">true</code></td>
+          <td><code class="highlighter-rouge">false</code></td>
+        </tr>
+        <tr>
+          <td>属性值不同的两个实例</td>
+          <td><code class="highlighter-rouge">false</code></td>
+          <td><code class="highlighter-rouge">false</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>##魔术方法 (不同时机自动调用以完成特定功能的系统定义方法  )</p>
+
+<ul>
+  <li>
+    <p>构造析构</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">__construct()</code>: 创建新对象时先自动调用此方法, 适合在使用对象之前的初始化操作</li>
+      <li><code class="highlighter-rouge">__destruct()</code>: 某个对象的所有引用都被删除或者当对象被显式销毁时执行, 一般用来放置关闭资源等等收尾工作</li>
+    </ul>
+  </li>
+  <li>
+    <p>*重载方法 (所有的重载方法都必须被声明为 <code class="highlighter-rouge">public</code>, 这些魔术方法的参数都不能通过引用传递)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">__set(string $name , mixed $value)</code>: 给未定义或不可见的变量赋值时被调用</li>
+      <li><code class="highlighter-rouge">__get(string $name)</code>: 读取未定义或不可见的变量的值时被调用</li>
+      <li><code class="highlighter-rouge">__isset(string $name)</code>: 当对未定义或不可见的变量调用 <code class="highlighter-rouge">isset()</code> 或 <code class="highlighter-rouge">empty()</code> 时被调用</li>
+      <li><code class="highlighter-rouge">__unset(string $name)</code>: 对未定义或不可见的变量调用 <code class="highlighter-rouge">unset()</code> 时被调用</li>
+      <li>
+        <ul>
+          <li>-</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">__call(string $name , array $arguments)</code>: 调用一个未定义或不可见方法时被调用, 用于错误处理</li>
+      <li><code class="highlighter-rouge">__callStatic(string $name , array $arguments)</code>: 在静态方法中调用一个未定义或不可见的方法时被调用</li>
+      <li>
+        <ul>
+          <li>-</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">__clone()</code>: 当使用 <code class="highlighter-rouge">clone</code> 复制对象时被调用, 用于对副本初始化(<code class="highlighter-rouge">$this </code>代表副本, <code class="highlighter-rouge">$that</code> 代表原本)操作</li>
+      <li><code class="highlighter-rouge">__toString()</code>: 当直接以字符串形式输出对象时被调用</li>
+      <li><code class="highlighter-rouge">__sleep()</code>: 当对象被序列化时被调用, 常用于提交未提交的数据等类似的清理操作或部分序列化
+  必须返回一个包含所需序列化的对象属性数组</li>
+      <li><code class="highlighter-rouge">__wakeup()</code>: 当对象被反序列化时被调用, 用于重新建立数据库连接等初始化操作</li>
+      <li><code class="highlighter-rouge">__invoke()</code>: 当尝试以调用函数的方式调用一个对象时</li>
+      <li><code class="highlighter-rouge">__setState()</code>: 当调用 <code class="highlighter-rouge">var_export()</code> 导出类时</li>
+      <li><code class="highlighter-rouge">__debugInfo()</code>: 当 <code class="highlighter-rouge">var_dump()</code> 对象时</li>
+      <li>
+        <ul>
+          <li>
+            <ul>
+              <li></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">__autoload($class_name)</code>: 试图使用尚未被定义的类时自动调用, 这是唯一一个在类外部使用的魔术方法</li>
+    </ul>
+  </li>
+</ul>
+
+<p>##Trait</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Trait</code> 为了减少单继承语言的限制, 使开发人员能够自由地在不同层次结构内独立的类中复用方法集</li>
+  <li>通过 <code class="highlighter-rouge">use</code> 关键字在类定义中引入 <code class="highlighter-rouge">Trait</code>, 优先顺序是来自当前类的成员覆盖了 <code class="highlighter-rouge">Trait</code> 的方法, 而 <code class="highlighter-rouge">Trait</code> 则覆盖了被继承的方法</li>
+  <li>如果两个 <code class="highlighter-rouge">Trait</code> 都插入了一个同名的方法, 如果没有明确解决冲突将会产生一个致命错误</li>
+  <li>使用 <code class="highlighter-rouge">insteadof</code> 操作符来明确指定使用冲突方法中的哪一个,   使用 <code class="highlighter-rouge">as</code> 将冲突方法以别名方式引入</li>
+  <li>也可同时用 <code class="highlighter-rouge">use</code> 指定引入时的方法可见性(<code class="highlighter-rouge">3P</code>)</li>
+  <li>其它 <code class="highlighter-rouge">Trait</code> 也能够使用 <code class="highlighter-rouge">Trait</code></li>
+  <li>为了对使用的类施加强制要求, <code class="highlighter-rouge">Trait</code> 支持抽象方法的使用</li>
+  <li><code class="highlighter-rouge">Traits</code> 可以定义静态成员静态方法</li>
+  <li>如果 <code class="highlighter-rouge">Trait</code> 定义了一个属性, 那类将不能定义同样名称的属性, 否则会产生一个错误</li>
+</ul>
+
+<p>#命名空间</p>
+
+<p>只有三种类型的代码受命名空间的影响: 类, 函数和常量</p>
+
+<ul>
+  <li>
+    <p>声明</p>
+
+    <ul>
+      <li>使用 <code class="highlighter-rouge">namespace</code> 关键字</li>
+      <li>必须在其他所有代码之前(除 <code class="highlighter-rouge">declare</code> 语句)</li>
+      <li>同一个命名空间可以定义在多个文件中. 
+  将全局的非命名空间中的代码与命名空间中的代码组合在一起, 只能使用大括号形式的语法. 全局代码必须用一个不带名称的 <code class="highlighter-rouge">namespace</code>  语句加上大括号括起来</li>
+      <li>除了开始的 <code class="highlighter-rouge">declare</code> 语句外, 命名空间的括号外不得有任何 PHP 代码</li>
+    </ul>
+  </li>
+  <li>
+    <p>种类</p>
+
+    <ul>
+      <li>非限定名, 如 <code class="highlighter-rouge">foo</code></li>
+      <li>限定名, 如 <code class="highlighter-rouge">foo\bar</code></li>
+      <li>完全限定名, 如 <code class="highlighter-rouge">\foo\bar</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>导入/别名:<code class="highlighter-rouge">use/as</code></p>
+
+    <ul>
+      <li>&lt;5.5: 只支持命名空间和类的别名, 不支持函数和常量</li>
+      <li>5.6: 支持在类中导入外部的函数和常量</li>
+      <li>一行可以使用多个 <code class="highlighter-rouge">use/as</code> 语句, 使用 <code class="highlighter-rouge">,</code> 号分割</li>
+    </ul>
+  </li>
+</ul>
+
+<p>#错误与异常</p>
+
+<p>###设置</p>
+
+<ul>
+  <li><code class="highlighter-rouge">php.ini</code></li>
+  <li><code class="highlighter-rouge">httpd.conf</code></li>
+  <li><code class="highlighter-rouge">htaccess</code></li>
+  <li>运行时</li>
+</ul>
+
+<p>###级别</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>数值表示</th>
+      <th>常量表示</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>E_ERROR</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>E_WARNING</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>E_PARSE</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>E_NOTICE</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>E_CORE_ERROR</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>E_CORE_WARNING</td>
+    </tr>
+    <tr>
+      <td>256</td>
+      <td>E_USER_ERROR</td>
+    </tr>
+    <tr>
+      <td>512</td>
+      <td>E_USER_WARNING</td>
+    </tr>
+    <tr>
+      <td>1024</td>
+      <td>E_USER_NOTICE</td>
+    </tr>
+    <tr>
+      <td>2048</td>
+      <td>E_STRICT</td>
+    </tr>
+    <tr>
+      <td>4096</td>
+      <td>E_RECOVERABLE_ERROR</td>
+    </tr>
+    <tr>
+      <td>8191</td>
+      <td>E_ALL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>###一般需要考虑错误处理的情况</p>
+
+<ul>
+  <li>连接到数据库</li>
+  <li>使用一个全局变量</li>
+  <li>打开一个文件</li>
+  <li>验证用户输入</li>
+  <li>0 除错误</li>
+</ul>
+
+<p>###处理方式</p>
+
+<ul>
+  <li>
+    <p>展示(适用于开发环境)</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  display_errors = on # 默认为 off
+  error_reporting() # 默认为除了 E_NOTICE 和 E_STRICT 的所有错误
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>记录(适用于线上环境)</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  log_errors = on
+  error_log = /path/to/filename # 或者 error_log = syslog
+  error_log()
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>抑制: <code class="highlighter-rouge">@</code></p>
+  </li>
+  <li>
+    <p>处理</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">die/exit</code></p>
+      </li>
+      <li>
+        <p>自定义错误处理函数:</p>
+
+        <p><code class="highlighter-rouge">php
+  &lt;?php
+  function handleError($errno, $errstr,$error_file,$error_line)
+  {
+      echo "&lt;b&gt;Error:&lt;/b&gt; [$errno] $errstr - $error_file:$error_line";
+      echo "&lt;br /&gt;";
+      echo "Terminating PHP Script";
+      die();
+  }
+  set_error_handler("handleError");
+  trigger_error();
+  ?&gt;
+ </code></p>
+      </li>
+      <li>
+        <p>抛出异常: <code class="highlighter-rouge">throw..try..catch</code></p>
+      </li>
+      <li>
+        <p>自定义异常处理函数:</p>
+
+        <p><code class="highlighter-rouge">php
+  &lt;?php
+  function exception_handler($exception) {
+      echo "Uncaught exception: " , $exception-&gt;getMessage(), "\n";
+  }
+  set_exception_handler('exception_handler');
+  throw new Exception('Uncaught Exception');
+  echo "Not Executed\n";
+  ?&gt;
+ </code></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>#*生成器</p>
+
+<p>生成器允许你在 <code class="highlighter-rouge">foreach</code> 代码块中写代码来迭代一组数据而不需要在内存中创建一个数组</p>
+
+<p>相比实现 <code class="highlighter-rouge">Iterator</code> 来说, 生成器实现起来更简单, 也更易读</p>
+
+<p>一个生成器函数看起来像一个普通的函数, 不同的是生成器可以 <code class="highlighter-rouge">yield</code> 生成许多它所需要的值</p>
+
+<p>当一个生成器被调用的时候, 它返回一个可以被遍历的对象</p>
+
+<p>一个生成器不可以返回值, 这样做会产生一个编译错误; 然而 <code class="highlighter-rouge">return</code> 空是一个有效的语法并且它将会终止生成器继续执行</p>
+
+<p>除了生成简单的值</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">yield</span> <span class="nv">$id</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>你也可以在生成值的时候指定键名</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">yield</span> <span class="nv">$id</span> <span class="o">=&gt;</span> <span class="nv">$fields</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>如果在一个表达式上下文(例如在一个赋值表达式的右侧)中使用 <code class="highlighter-rouge">yield</code>, 你必须使用圆括号把 <code class="highlighter-rouge">yield</code> 申明包围起来</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span> <span class="nv">$value</span><span class="p">);</span> 
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>或</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">yield</code> 可以在没有参数传入的情况下被调用来生成一个 <code class="highlighter-rouge">NULL</code> 值并配对一个自动的键名</p>
+
+<p>生成函数可以像使用值一样来使用引用生成</p>
+
+<p>#引用(可理解为别名, 删除别名并不会删除别名指向的变量)</p>
+
+<ul>
+  <li>
+    <p>变量的引用传递</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  $var = &amp;$var2 // 所有对 $var 的更改将反映到 $var2
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>函数的引用传递</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  function fun(&amp;$var) {
+      // 所有对 $var 的更改将反映到 $var 指向的变量         
+      // 也可以用全局变量实现
+  }
+  ?&gt;
+ </code></p>
+  </li>
+  <li>
+    <p>函数的引用返回</p>
+
+    <p><code class="highlighter-rouge">php
+  &lt;?php
+  function &amp;fun(){
+      return ...
+  }
+  ?&gt;
+ </code></p>
+
+    <p>*此时, 如果要将函数返回作为引用赋值, 必须在赋值时加 <code class="highlighter-rouge">&amp;</code>, 如 <code class="highlighter-rouge">$var = &amp;fun();</code>
+  函数名前面的 <code class="highlighter-rouge">&amp;</code>和赋值时的 <code class="highlighter-rouge">&amp;</code> 两者缺一不可</p>
+  </li>
+  <li>
+    <p>对象的引用</p>
+
+    <p>默认即为引用传递, 如果不想用引用, 使用 <code class="highlighter-rouge">clone</code> 关键字</p>
+  </li>
+  <li>
+    <p>用途</p>
+
+    <p>如果程序比较大, 引用同一个对象的变量比较多并且希望用完该对象后手工清除它, 建议用 <code class="highlighter-rouge">&amp;</code> 方式, 然后用 <code class="highlighter-rouge">$var = null</code> 的方式清除;</p>
+
+    <p>对于大数组的传递, 建议用 <code class="highlighter-rouge">&amp;</code> 方式, 毕竟节省内存空间使用</p>
+  </li>
+</ul>
+
+<p>#预定义</p>
+
+<ul>
+  <li>
+    <p>超全局变量</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>变量</th>
+          <th>概述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="highlighter-rouge">$GLOBALS</code></td>
+          <td>所有全局变量, 包括用户自定义的和超全局数组</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_SERVER</code></td>
+          <td>服务器和当前脚本环境相关数据</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_GET</code></td>
+          <td>GET 方法提交的数据</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_POST</code></td>
+          <td>POST 方法提交的数据</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_FILES</code></td>
+          <td>POST 方法上传文件的信息</td>
+        </tr>
+        <tr>
+          <td>*<code class="highlighter-rouge">$_REQUEST</code></td>
+          <td>GET, POST, COOKIE 提交的数据(尽量避免使用该数组)</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_SESSION</code></td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_COOKIE</code></td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$_ENV</code></td>
+          <td>执行环境相关数据</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">php_errormsg</code></td>
+          <td>错误发生的作用域的前一个错误信息(<code class="highlighter-rouge">track_errors</code> 配置项需开启)</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$http_response_header</code></td>
+          <td>响应头</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$argc</code></td>
+          <td>传递给脚本的参数数目(命令行下)</td>
+        </tr>
+        <tr>
+          <td><code class="highlighter-rouge">$argv</code></td>
+          <td>传递给脚本的参数数组(命令行下)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>异常</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">Exception</code>
+        <ul>
+          <li><code class="highlighter-rouge">::getMessage</code></li>
+          <li><code class="highlighter-rouge">::getPrevious</code></li>
+          <li><code class="highlighter-rouge">::getCode</code></li>
+          <li><code class="highlighter-rouge">::getFile</code></li>
+          <li><code class="highlighter-rouge">::getLine</code></li>
+          <li><code class="highlighter-rouge">::getTrace</code></li>
+          <li><code class="highlighter-rouge">::getTraceAsString</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">ErrorException</code>
+        <ul>
+          <li><code class="highlighter-rouge">::getSeverity</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>接口</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">Traversable</code>(内部自用, 不可实现)</p>
+      </li>
+      <li><code class="highlighter-rouge">Iterator</code>
+        <ul>
+          <li><code class="highlighter-rouge">::current</code></li>
+          <li><code class="highlighter-rouge">::key</code></li>
+          <li><code class="highlighter-rouge">::next</code></li>
+          <li><code class="highlighter-rouge">::rewind</code></li>
+          <li><code class="highlighter-rouge">::valid</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">IteratorAggregate</code>
+        <ul>
+          <li><code class="highlighter-rouge">::getIterator</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">ArrayAccess</code>
+        <ul>
+          <li><code class="highlighter-rouge">::offsetExists</code></li>
+          <li><code class="highlighter-rouge">::offsetGet</code></li>
+          <li><code class="highlighter-rouge">::offsetSet</code></li>
+          <li><code class="highlighter-rouge">::offsetUnset</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">Serializable</code>
+        <ul>
+          <li><code class="highlighter-rouge">::serialize</code></li>
+          <li><code class="highlighter-rouge">::unserialize</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">Closure</code>
+        <ul>
+          <li><code class="highlighter-rouge">::bind</code></li>
+          <li><code class="highlighter-rouge">::bindTo</code></li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">Generator</code>
+        <ul>
+          <li><code class="highlighter-rouge">::current</code></li>
+          <li><code class="highlighter-rouge">::key</code></li>
+          <li><code class="highlighter-rouge">::next</code></li>
+          <li><code class="highlighter-rouge">::rewind</code></li>
+          <li><code class="highlighter-rouge">::send</code></li>
+          <li><code class="highlighter-rouge">::throw</code></li>
+          <li><code class="highlighter-rouge">::valid</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>#上下文</p>
+
+<p>上下文(Context)由 <code class="highlighter-rouge">stream_context_create()</code> 创建</p>
+
+<p>选项可通过 <code class="highlighter-rouge">stream_context_set_option()</code> 设置</p>
+
+<p>参数可通过 <code class="highlighter-rouge">stream_context_set_params()</code> 设置</p>
+
+<p>##选项</p>
+
+<ul>
+  <li>
+    <p>HTTP(<code class="highlighter-rouge">http://, https://</code>)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">method </code></li>
+      <li><code class="highlighter-rouge">header </code></li>
+      <li><code class="highlighter-rouge">user_agent </code></li>
+      <li><code class="highlighter-rouge">content </code></li>
+      <li><code class="highlighter-rouge">proxy </code></li>
+      <li><code class="highlighter-rouge">request_fulluri </code></li>
+      <li><code class="highlighter-rouge">follow_location </code></li>
+      <li><code class="highlighter-rouge">max_redirects </code></li>
+      <li><code class="highlighter-rouge">protocal_version </code></li>
+      <li><code class="highlighter-rouge">timout </code></li>
+      <li><code class="highlighter-rouge">ignore_errors</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>FTP(<code class="highlighter-rouge">ftp://, ftps://</code>)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">overwrite </code></li>
+      <li><code class="highlighter-rouge">resume_pos </code></li>
+      <li><code class="highlighter-rouge">proxy</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>SSL(<code class="highlighter-rouge">ssl://, tls://,</code> 同样适用于 <code class="highlighter-rouge">https://</code> 和 <code class="highlighter-rouge">ftps://</code> 上下文)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">peer_name </code></li>
+      <li><code class="highlighter-rouge">verify_peer </code></li>
+      <li><code class="highlighter-rouge">verify_peer_name </code></li>
+      <li><code class="highlighter-rouge">allow_self_signed </code></li>
+      <li><code class="highlighter-rouge">cafile </code></li>
+      <li><code class="highlighter-rouge">capath</code></li>
+      <li><code class="highlighter-rouge">local_cert </code></li>
+      <li><code class="highlighter-rouge">local_pk </code></li>
+      <li><code class="highlighter-rouge">passphrase </code></li>
+      <li><code class="highlighter-rouge">CN_match </code></li>
+      <li><code class="highlighter-rouge">verify_depth </code></li>
+      <li><code class="highlighter-rouge">ciphers</code></li>
+      <li><code class="highlighter-rouge">capture_peer_cert </code></li>
+      <li><code class="highlighter-rouge">capture_peer_cert_chain </code></li>
+      <li><code class="highlighter-rouge">SNI_enabled </code></li>
+      <li><code class="highlighter-rouge">SNI_server_name</code></li>
+      <li><code class="highlighter-rouge">disable_compression </code></li>
+      <li><code class="highlighter-rouge">peer_fingerprint</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>CURL</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">method</code></li>
+      <li><code class="highlighter-rouge">header</code></li>
+      <li><code class="highlighter-rouge">user_agent</code></li>
+      <li><code class="highlighter-rouge">content</code></li>
+      <li><code class="highlighter-rouge">proxy</code></li>
+      <li><code class="highlighter-rouge">curl_verify_ssl_host</code></li>
+      <li><code class="highlighter-rouge">curl_verify_ssl_peer</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Phar(<code class="highlighter-rouge">phar://</code>)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">compress </code></li>
+      <li><code class="highlighter-rouge">metadata</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>MongoDB(<code class="highlighter-rouge">mongodb://</code>)</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">log_cmd_insert </code></li>
+      <li><code class="highlighter-rouge">log_cmd_delete </code></li>
+      <li><code class="highlighter-rouge">log_cmd_update </code></li>
+      <li><code class="highlighter-rouge">log_write_batch </code></li>
+      <li><code class="highlighter-rouge">log_reply</code></li>
+      <li><code class="highlighter-rouge">log_getmore </code></li>
+      <li><code class="highlighter-rouge">log_killcursor</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>##参数</p>
+
+<ul>
+  <li>notification</li>
+</ul>
+
+<p>#支持的协议和封装协议</p>
+
+<ul>
+  <li><code class="highlighter-rouge">file://</code></li>
+  <li><code class="highlighter-rouge">http://</code></li>
+  <li><code class="highlighter-rouge">https://</code></li>
+  <li><code class="highlighter-rouge">ftp://</code></li>
+  <li><code class="highlighter-rouge">ftps://</code></li>
+  <li><code class="highlighter-rouge">php://</code>
+    <ul>
+      <li><code class="highlighter-rouge">php://stdin</code></li>
+      <li><code class="highlighter-rouge">php://stdout</code></li>
+      <li><code class="highlighter-rouge">php://stderr</code></li>
+      <li><code class="highlighter-rouge">php://input</code> (5.6: 可以多次打开并读取 <code class="highlighter-rouge">php://input</code>)</li>
+      <li><code class="highlighter-rouge">php://output</code></li>
+      <li><code class="highlighter-rouge">php://fd</code></li>
+      <li><code class="highlighter-rouge">php://memory</code></li>
+      <li><code class="highlighter-rouge">php://temp</code></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">zlib://</code></li>
+  <li><code class="highlighter-rouge">data://</code></li>
+  <li><code class="highlighter-rouge">glob://</code></li>
+  <li><code class="highlighter-rouge">phar://</code></li>
+  <li><code class="highlighter-rouge">ssh2://</code></li>
+  <li><code class="highlighter-rouge">rar://</code></li>
+  <li><code class="highlighter-rouge">ogg://</code></li>
+  <li><code class="highlighter-rouge">expect://</code></li>
+</ul>
+
+            </div>
+
+            <div id="markdown-outline" class="col-lg-3">
+            </div>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'unifreak-github';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+    
+<footer id="l-footer">
+    <div class="container">
+        <div class="row">
+            <div id="contact" class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-9">
+                <h3>CONTACT</h3>
+                <div class="row">
+                    <address id="address" class="col-lg-6 col-md-6 col-sm-6">
+                          <br>
+                        , <br>
+                        <br>
+                        <br>
+                    </address>
+
+                    <ul class="col-lg-6 col-md-6 col-sm-6">
+                        <li class="qq"><i class="fa fa-qq"></i> &nbsp;&nbsp;</li>
+                        <li class="email"><i class="fa fa-envelope"></i> <a href="mailto:"> &nbsp;&nbsp;</a></li>
+                        <li class="tel"><i class="fa fa-mobile"></i> <a href="tel:15671542698">&nbsp;&nbsp; </a></li>
+                        <li class="github"><i class="fa fa-github"></i> <a href=""> &nbsp;&nbsp;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="rss" class="col-lg-2 col-md-2 col-sm-2">
+                    <h3>SUBSCRIBE<br>
+                    via</h3>
+                <a href="feed.xml">
+                    <i class="rss fa fa-rss-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <p id="legal">
+            Copyright (c) 2015  | Powered by <a href="http://jekyllrb.com">Jekyll</a> &amp; <a href="http://github.com">GitHub</a> | designed &amp; build by <a href="http://unifreak.github.io">UniFreak</a>
+        </p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="http://example.comjavascripts/base.js"></script>
+
+
+<!-- 百度统计 -->
+<script type="text/javascript" src="http://example.comjavascripts/baidu_statistics.js"></script>
+
+
+    <script type="text/javascript" src="http://example.comjavascripts/markdownreader.js"></script>
+</body>
+</html>
