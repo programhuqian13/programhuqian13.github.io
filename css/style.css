@@ -1,0 +1,121 @@
+#use-version{
+    text-align: center;
+    background-color: #00b3ee;
+    height: 570px;
+    padding-left: 0;
+    /*width: 420px;*/
+    margin-right: 1em
+}
+
+#use-version > div:nth-child(1){
+    font-size: 22px;
+    color: white;
+    padding-top: 4em;
+
+}
+
+#use-version  a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 2em;
+}
+
+#use-version  a:hover{
+    background-color: white;
+    color: #00b3ee;
+}
+
+#use-version > div:nth-child(2){
+    font-size: 18px;
+    color: white;
+    margin-top: 1em;
+}
+
+#use-version > div:nth-child(3){
+    margin-top: 3em;
+}
+
+#use-version > div:nth-child(3) > a{
+    border: solid 1px white;
+    padding: 1em 5em;
+}
+
+#use-version > div:nth-child(4){
+    margin-top: 3em;
+}
+
+#use-version > div:nth-child(4) > a{
+    border: solid 1px white;
+    padding: 1em 4.2em;
+}
+
+#use-version > div:nth-child(5){
+    margin-top: 3em;
+}
+#use-version > div:nth-child(5) > a{
+    border: solid 1px white;
+    padding: 1em 4em;
+}
+
+
+
+#beta-version{
+    text-align: center;
+    background-color: #959595;
+    height: 570px;
+    padding-right: 0;
+    /*width: 420px;*/
+    margin-right: 1em
+}
+
+#beta-version > div:nth-child(1){
+    font-size: 22px;
+    color: white;
+    padding-top: 4em;
+}
+
+#beta-version  a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 2em;
+
+}
+
+#beta-version  a:hover{
+    background-color: white;
+    color: #959595;
+}
+
+#beta-version > div:nth-child(2){
+    font-size: 18px;
+    color: white;
+    margin-top: 1em;
+}
+
+#beta-version > div:nth-child(3){
+    margin-top: 3em;
+}
+
+#beta-version > div:nth-child(3) > a{
+    border: solid 1px white;
+    padding: 1em 5em;
+}
+
+#beta-version > div:nth-child(4){
+    margin-top: 3em;
+}
+
+#beta-version > div:nth-child(4) > a{
+    border: solid 1px white;
+    padding: 1em 4.2em;
+}
+
+#beta-version > div:nth-child(5){
+    margin-top: 3em;
+}
+#beta-version > div:nth-child(5) > a{
+    border: solid 1px white;
+    padding: 1em 4em;
+}
