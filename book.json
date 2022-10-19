@@ -1,0 +1,43 @@
+{
+    "author": "Tony",
+    "description": "This is record sharing by Tony.",
+    "extension": null,
+    "generator": "site",
+    "isbn": "",
+    "links": {
+        "sharing": {
+            "all": null,
+            "facebook": null,
+            "google": null,
+            "twitter": null,
+            "weibo": null
+        },
+        "sidebar": {
+            "谷歌": "https://www.google.com"
+        }
+    },
+    "output": null,
+    "pdf": {
+        "fontSize": 12,
+        "footerTemplate": null,
+        "headerTemplate": null,
+        "margin": {
+            "bottom": 36,
+            "left": 62,
+            "right": 62,
+            "top": 36
+        },
+        "pageNumbers": true,
+        "paperSize": "a4"
+    },
+    "plugins": [],
+    "pluginsConfig": {
+
+    },
+    "language": "zh-hans",
+    "title": "Levy",
+    "variables": {},
+    "styles": {
+        "website": "assets/styles/website.css"
+    }
+}
