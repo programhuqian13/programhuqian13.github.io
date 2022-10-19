@@ -30,12 +30,22 @@
         "pageNumbers": true,
         "paperSize": "a4"
     },
-    "plugins": [],
+    "plugins": ["page-treeview","expandable-chapters","chapter-fold","code","back-to-top-button","donate"],
     "pluginsConfig": {
-
+        "code": {
+            "copyButtons": false
+        },
+        "donate": {
+            "wechat": "/assets/img/donate/wechat.png",
+            "alipay": "/assets/img/donate/alipay.png",
+            "title": "",
+            "button": "赏",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        }
     },
     "language": "zh-hans",
-    "title": "Levy",
+    "title": "Tony",
     "variables": {},
     "styles": {
         "website": "assets/styles/website.css"
