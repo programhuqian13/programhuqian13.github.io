@@ -36,10 +36,10 @@
             "copyButtons": false
         },
         "donate": {
-            "wechat": "/assets/img/donate/wechat.png",
-            "alipay": "/assets/img/donate/alipay.png",
+            "wechat": "/assets/styles/img/donate/wechat.jpg",
+            "alipay": "/assets/styles/img/donate/alipay.jpg",
             "title": "",
-            "button": "赏",
+            "button": "打赏",
             "alipayText": "支付宝打赏",
             "wechatText": "微信打赏"
         }

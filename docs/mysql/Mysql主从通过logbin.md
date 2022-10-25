@@ -122,11 +122,7 @@ mysql> GRANT REPLICATION SLAVE ON *.* TO 'slave_test'@'%';
 ```mysql
 mysql> FLUSH TABLES WITH READ  LOCK;
 ```
-
 2. 在源上的另一个会话中，使用`SHOW MASTER STATUS`语句来确定当前二进制日志文件的名称和位置
-
-![image-20221009173841826](C:\Users\Tony\AppData\Roaming\Typora\typora-user-images\image-20221009173841826.png)
-
 File列显示日志文件的名称，Position列显示文件中的位置。设置副本时需要。表示复制坐标，副本应该从这个坐标开始处理来自源的新更新。
 
 如果源已经在禁用二进制日志记录的情况下运行，则通过`SHOW MASTER STATUS`或mysqldump --master-data显示的日志文件名和位置值为空。在这种情况下，稍后指定源的二进制日志文件和位置时需要使用的值是空字符串(")和4。

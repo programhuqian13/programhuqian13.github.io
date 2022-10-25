@@ -4,3 +4,7 @@
 .treeview__container-title {
     display: none !important;
 }
+
+.gitbook-link {
+    display: none!important;
+}
