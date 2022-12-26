@@ -8,6 +8,7 @@
         * [Mysql存储引擎](docs/mysql/Mysql存储引擎.md)
         * [Mysql优化之Schema与数据类型](docs/mysql/Mysql优化之Schema与数据类型.md)
         * [Mysql优化之如何创建高性能的索引](docs/mysql/Mysql优化之如何创建高性能的索引.md)
+        * [Mysql优化之查询性能优化](docs/mysql/Mysql优化之查询性能优化.md)
 * 消息中间件
     * [kafka](docs/kafka/index.md)
     * [Pulsar](docs/Pulsar/index.md)
