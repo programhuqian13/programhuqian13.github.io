@@ -12,6 +12,8 @@
 * 消息中间件
     * [kafka](docs/kafka/index.md)
     * [Pulsar](docs/Pulsar/index.md)
+        * [Pulsar 本地安装](docs/Pulsar/install-locally.md)
+        * [Pulsar 之Messaging(消息)](docs/Pulsar/message.md)
 * 云原生
 * 微服务
     * [微服务](docs/Microservice/index.md)
