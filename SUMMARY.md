@@ -15,6 +15,14 @@
         * [Pulsar 本地安装](docs/Pulsar/install-locally.md)
         * [Pulsar 之Messaging(消息)](docs/Pulsar/message.md)
         * [Pulsar 之 架构总览](docs/Pulsar/architecture_overview.md)
+        * [Pulsar 之 Client](docs/Pulsar/client.md)
+        * [Pulsar 之 多区域容灾备份](docs/Pulsar/geo-replication.md)
+        * [Pulsar 之 多租户](docs/Pulsar/mulit-tenant.md)
+        * [Pulsar 之 主题复制](docs/Pulsar/topic-compaction.md)
+        * [Pulsar 之 集群级故障转移](docs/Pulsar/cluster-level-failover.md)
+        * [Pulsar 之 SNI](docs/Pulsar/SNI.md)
+        * [Pulsar 之 多个播发侦听器](docs/Pulsar/multiple-advertised-listeners.md)
+        * [Pulsar 之 数据结构](docs/Pulsar/schema.md)
 * 云原生
 * 微服务
     * [微服务](docs/Microservice/index.md)
