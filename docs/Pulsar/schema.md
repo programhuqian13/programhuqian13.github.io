@@ -244,4 +244,51 @@ Producer<SensorReading> producer = client.newProducer(JSONSchema.of(SensorReadin
 - 主题不存在Schema:(1)生产者是用给定的Schema创建的。(2)Schema被传输到代理并存储，因为没有现有的Schema(3)使用相同Schema或主题创建的任何消费者都可以消费来自传感器数据主题的消息
 - Schema已经存在。生产者使用已经存储的相同Schema进行连接:1)Schema被传输到代理(2)代理确定Schema是兼容的(3)代理试图将Schema存储在BookKeeper中，但随后确定它已经被存储，因此它被用于标记生成的消息
 - Schema已经存在。生产者使用兼容的新Schema进行连接:(1)Schema被传输到代理。代理确定Schema是兼容的，并将新Schema存储为当前版本(带有新的版本号)
+# Schema兼容性检查
+      Schema兼容性检查的目的是确保现有的使用者可以处理引入的消息
+当从生产者接收SchemaInfo时，代理识别模式类型，并为该模式类型部署模式兼容性检查器(schemaRegistryCompatibilityCheckers)，通过应用配置的兼容性检查策略来检查SchemaInfo是否与主题的模式兼容
+
+schemaRegistryCompatibilityCheckers的默认值,conf/broker.conf配置文件中:
+```text
+schemaRegistryCompatibilityCheckers=org.apache.pulsar.broker.service.schema.JsonSchemaCompatibilityCheck,org.apache.pulsar.broker.service.schema.AvroSchemaCompatibilityCheck,org.apache.pulsar.broker.service.schema.ProtobufNativeSchemaCompatibilityCheck
+```
+每种模式类型都对应于模式兼容性检查器的一个实例。Avro、JSON和Protobuf模式有它们自己的兼容性检查器，而所有其他模式类型共享默认的兼容性检查器，这将禁用模式演化
+# Schema兼容性检查策略
+假设您有一个包含三个模式(V1、V2和V3)的主题。V1是最古老的，V3是最新的。下表概述了8种模式兼容性策略及其工作原理：
+
+|兼容检查策略|定义|允许的更改|根据哪个模式检查|
+|----|----|----|----|
+|ALWAYS_COMPATIBLE|禁用Schema兼容性检查|允许所有更改|所有以前的版本|
+|ALWAYS_INCOMPATIBLE|禁用Schema演化，即拒绝任何模式更改|不允许更改|N/A|
+|BACKWARD|使用模式V3的消费者可以处理使用上一个模式版本V2的生产者写入的数据|允许添加可选字段 允许删除字段|最新版本|
+|BACKWARD_TRANSITIVE|使用模式V3的消费者可以处理使用所有以前的模式版本V2和V1的生产者写入的数据|允许添加可选字段 允许删除字段|所有以前的版本|
+|FORWARD|使用上一个模式版本V2的消费者可以处理使用新模式V3的生产者写入的数据，尽管他们可能无法使用新模式的全部功能|允许添加字段 允许删除可选字段|最新版本|
+|FORWARD_TRANSITIVE|使用所有以前的模式版本V2或V1的消费者可以处理使用新模式V3的生产者写入的数据|允许添加字段 允许删除可选字段|所有以前的版本|
+|FULL|模式既向后兼容，也向前兼容。使用上一个模式V2的消费者可以处理使用新模式V3的生产者写入的数据。使用新模式V3的消费者可以处理使用上一个模式V2的生产者写入的数据|修改可选字段|最新版本|
+|FULL_TRANSITIVE|模式V3、V2和V1之间的向后和向前兼容性。使用模式V3的消费者可以处理使用模式V2和V1的生产者写入的数据。使用模式V2或V1的消费者可以处理使用模式V3的生产者写入的数据|修改可选字段|所有以前的版本|
+# Schema自动更新
+      默认情况下，Schema AutoUpdate是启用的。当Schema通过Schema兼容性检查时，生产者自动将该Schema更新为它所生成的主题
+## 生产者端（producer）
+对于生产者，在以下情况下发生AutoUpdate：
+- 如果主题没有模式(意味着数据是原始字节)，Pulsar会自动注册模式
+- 如果一个主题有一个模式，而生产者不携带任何模式(意味着它产生原始字节)：
+  - 如果在主题所属的名称空间中禁用模式验证强制(schemaValidationEnforced=false)，则允许生产者连接到主题并生成数据
+  - 否则，将拒绝生产者
+  - 如果一个主题有一个模式，生产者也携带一个模式
+## 消费端（Consume）
+对于消费者，在以下情况下发生AutoUpdate：
+- 如果使用者连接到一个没有模式的主题(意味着它消耗原始字节)，则使用者可以成功连接到主题，而无需进行任何兼容性检查
+- 如果使用者使用模式连接到主题
+# 客户端升级顺序
+      为了适应模式演变和自动更新，我们需要相应地升级客户端应用程序。根据配置的模式兼容性检查策略不同，升级顺序可能不同
+模式兼容性检查策略与客户端升级顺序的对应关系如下表所示：
+
+|兼容检查策略|升级顺序|描述|
+|----|----|----|
+|ALWAYS_COMPATIBLE|任何顺序|禁用兼容性检查。因此，我们可以以任何顺序升级生产者和消费者|
+|ALWAYS_INCOMPATIBLE|N/A|Schema演变已禁用|
+|BACKWARD / BACKWARD_TRANSITIVE|消费者优先|不能保证使用旧模式的消费者可以读取使用新模式产生的数据。因此，首先升级所有消费者，然后开始生成新数据|
+|FORWARD / FORWARD_TRANSITIVE|生产者优先|不能保证使用新模式的消费者可以读取使用旧模式产生的数据。因此，首先升级所有生产者以使用新模式，并确保已经使用旧模式生成的数据对消费者不可用，然后升级消费者|
+|FULL / FULL_TRANSITIVE|任何顺序|可以保证使用旧模式的消费者可以读取使用新模式产生的数据，使用新模式的消费者可以读取使用旧模式产生的数据。因此，我们可以以任何顺序升级生产者和消费者|
+
 
