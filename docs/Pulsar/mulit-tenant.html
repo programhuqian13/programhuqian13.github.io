@@ -1,0 +1,768 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Pulsar 之 多租户 · Tony</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tony">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../assets/styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="topic-compaction.html" />
+    
+    
+    <link rel="prev" href="geo-replication.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.google.com" target="_blank" class="custom-link">谷歌</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    大数据
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../mysql/">
+            
+                <a href="../mysql/">
+            
+                    
+                    Mysql
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../mysql/Mysql主从通过logbin.html">
+            
+                <a href="../mysql/Mysql主从通过logbin.html">
+            
+                    
+                    Mysql主从通过logbin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../mysql/Mysql逻辑架构.html">
+            
+                <a href="../mysql/Mysql逻辑架构.html">
+            
+                    
+                    Mysql逻辑架构和解释
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="../mysql/Mysql存储引擎.html">
+            
+                <a href="../mysql/Mysql存储引擎.html">
+            
+                    
+                    Mysql存储引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="../mysql/Mysql优化之Schema与数据类型.html">
+            
+                <a href="../mysql/Mysql优化之Schema与数据类型.html">
+            
+                    
+                    Mysql优化之Schema与数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="../mysql/Mysql优化之如何创建高性能的索引.html">
+            
+                <a href="../mysql/Mysql优化之如何创建高性能的索引.html">
+            
+                    
+                    Mysql优化之如何创建高性能的索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="../mysql/Mysql优化之查询性能优化.html">
+            
+                <a href="../mysql/Mysql优化之查询性能优化.html">
+            
+                    
+                    Mysql优化之查询性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    消息中间件
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../kafka/">
+            
+                <a href="../kafka/">
+            
+                    
+                    kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Pulsar
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="install-locally.html">
+            
+                <a href="install-locally.html">
+            
+                    
+                    Pulsar 本地安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="message.html">
+            
+                <a href="message.html">
+            
+                    
+                    Pulsar 之Messaging(消息)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="architecture_overview.html">
+            
+                <a href="architecture_overview.html">
+            
+                    
+                    Pulsar 之 架构总览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="client.html">
+            
+                <a href="client.html">
+            
+                    
+                    Pulsar 之 Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.5" data-path="geo-replication.html">
+            
+                <a href="geo-replication.html">
+            
+                    
+                    Pulsar 之 多区域容灾备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2.6" data-path="mulit-tenant.html">
+            
+                <a href="mulit-tenant.html">
+            
+                    
+                    Pulsar 之 多租户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.7" data-path="topic-compaction.html">
+            
+                <a href="topic-compaction.html">
+            
+                    
+                    Pulsar 之 主题复制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.8" data-path="cluster-level-failover.html">
+            
+                <a href="cluster-level-failover.html">
+            
+                    
+                    Pulsar 之 集群级故障转移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.9" data-path="SNI.html">
+            
+                <a href="SNI.html">
+            
+                    
+                    Pulsar 之 SNI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.10" data-path="multiple-advertised-listeners.html">
+            
+                <a href="multiple-advertised-listeners.html">
+            
+                    
+                    Pulsar 之 多个播发侦听器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.11" data-path="schema.html">
+            
+                <a href="schema.html">
+            
+                    
+                    Pulsar 之 数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.12" data-path="pulsar-functions.html">
+            
+                <a href="pulsar-functions.html">
+            
+                    
+                    Pulsar 之 Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    云原生
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    微服务
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../Microservice/">
+            
+                <a href="../Microservice/">
+            
+                    
+                    微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../Nacos/">
+            
+                <a href="../Nacos/">
+            
+                    
+                    Nacos
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../Nacos/install.html">
+            
+                <a href="../Nacos/install.html">
+            
+                    
+                    安装部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../kafka/">
+            
+                <a href="../kafka/">
+            
+                    
+                    Spring Cloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    构建工具
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../Maven/">
+            
+                <a href="../Maven/">
+            
+                    
+                    Maven
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Pulsar 之 多租户</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright &#xA9; aleen42 all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#&#x547D;&#x540D;&#x7A7A;&#x95F4;">&#x547D;&#x540D;&#x7A7A;&#x95F4;</a><i></i></div></li>
+<li><div><a href="#&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x548C;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;">&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x548C;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;</a><i></i></div></li>
+</ul>
+</div>
+
+<h1 id="&#x591A;&#x79DF;&#x6237;">&#x591A;&#x79DF;&#x6237;</h1>
+<pre><code>Pulsar&#x662F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x591A;&#x79DF;&#x6237;&#x7CFB;&#x7EDF;&#x521B;&#x5EFA;&#x7684;&#x3002;&#x4E3A;&#x4E86;&#x652F;&#x6301;&#x591A;&#x79DF;&#x6237;&#xFF0C;Pulsar&#x6709;&#x4E00;&#x4E2A;&#x79DF;&#x6237;&#x7684;&#x6982;&#x5FF5;&#x3002;&#x79DF;&#x6237;&#x53EF;&#x4EE5;&#x5206;&#x5E03;&#x5728;&#x591A;&#x4E2A;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x96C6;&#x7FA4;&#x90FD;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x548C;&#x6388;&#x6743;&#x65B9;&#x6848;&#x3002;
+&#x5B83;&#x4EEC;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x7BA1;&#x7406;&#x5B58;&#x50A8;&#x914D;&#x989D;&#x3001;&#x6D88;&#x606F;TTL&#x548C;&#x9694;&#x79BB;&#x7B56;&#x7565;&#x7684;&#x7BA1;&#x7406;&#x5355;&#x5143;
+</code></pre><p>Pulsar&#x7684;&#x591A;&#x79DF;&#x6237;&#x7279;&#x6027;&#x4E3B;&#x8981;&#x4F53;&#x73B0;&#x5728;&#x5177;&#x6709;&#x8FD9;&#x79CD;&#x7ED3;&#x6784;&#x7684;&#x4E3B;&#x9898;url&#x4E2D;:</p>
+<pre><code class="lang-text">persistent://tenant/namespace/topic
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x79DF;&#x6237;&#x662F;&#x4E3B;&#x9898;&#x7684;&#x6700;&#x57FA;&#x672C;&#x5206;&#x7C7B;&#x5355;&#x5143;(&#x6BD4;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x548C;&#x4E3B;&#x9898;&#x540D;&#x79F0;&#x66F4;&#x57FA;&#x672C;)</p>
+<p>&#x53EF;&#x4EE5;&#x5206;&#x914D;&#x7ED9;Pulsar&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x79DF;&#x6237;:</p>
+<ul>
+<li>&#x6388;&#x6743;&#x65B9;&#x6848;</li>
+<li>&#x79DF;&#x6237;&#x914D;&#x7F6E;&#x5E94;&#x7528;&#x5230;&#x7684;&#x96C6;&#x7FA4;&#x96C6;</li>
+</ul>
+<h1 id="&#x547D;&#x540D;&#x7A7A;&#x95F4;">&#x547D;&#x540D;&#x7A7A;&#x95F4;</h1>
+<pre><code>&#x79DF;&#x6237;&#x548C;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x662F;Pulsar&#x652F;&#x6301;&#x591A;&#x79DF;&#x6237;&#x7684;&#x4E24;&#x4E2A;&#x5173;&#x952E;&#x6982;&#x5FF5;
+</code></pre><ul>
+<li>Pulsar&#x4E3A;&#x6307;&#x5B9A;&#x7684;&#x79DF;&#x6237;&#x63D0;&#x4F9B;&#xFF0C;&#x5E76;&#x4E3A;&#x79DF;&#x6237;&#x5206;&#x914D;&#x9002;&#x5F53;&#x7684;&#x5BB9;&#x91CF;</li>
+<li>&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x662F;&#x79DF;&#x6237;&#x4E2D;&#x7684;&#x7BA1;&#x7406;&#x5355;&#x5143;&#x547D;&#x540D;&#x6CD5;&#x3002;&#x5728;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E0A;&#x8BBE;&#x7F6E;&#x7684;&#x914D;&#x7F6E;&#x7B56;&#x7565;&#x5E94;&#x7528;&#x4E8E;&#x8BE5;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x6240;&#x6709;&#x4E3B;&#x9898;&#x3002;&#x79DF;&#x6237;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;REST API&#x548C;pulse -admin CLI&#x5DE5;&#x5177;&#x901A;&#x8FC7;&#x81EA;&#x6211;&#x7BA1;&#x7406;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x62E5;&#x6709;&#x4E0D;&#x540C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x79DF;&#x6237;&#x53EF;&#x4EE5;&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7684;&#x540D;&#x79F0;&#x7A7A;&#x95F4;</li>
+</ul>
+<p>&#x76F8;&#x540C;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E3B;&#x9898;&#x540D;&#x79F0;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-text">persistent://tenant/app1/topic-1
+
+persistent://tenant/app1/topic-2
+
+persistent://tenant/app1/topic-3
+</code></pre>
+<h1 id="&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x548C;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;">&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x548C;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;</h1>
+<p>Pulsar&#x662F;&#x4E00;&#x4E2A;&#x591A;&#x79DF;&#x6237;&#x4E8B;&#x4EF6;&#x6D41;&#x7CFB;&#x7EDF;&#x3002;&#x7BA1;&#x7406;&#x5458;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x7EA7;&#x522B;&#x7684;&#x7B56;&#x7565;&#x6765;&#x7BA1;&#x7406;&#x79DF;&#x6237;&#x548C;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x8FD9;&#x4E9B;&#x7B56;&#x7565;(&#x5982;&#x4FDD;&#x7559;&#x7B56;&#x7565;&#x548C;&#x5B58;&#x50A8;&#x914D;&#x989D;&#x7B56;&#x7565;)&#x4EC5;&#x5728;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7EA7;&#x522B;&#x53EF;&#x7528;&#x3002;
+&#x5728;&#x8BB8;&#x591A;&#x7528;&#x4F8B;&#x4E2D;&#xFF0C;&#x7528;&#x6237;&#x9700;&#x8981;&#x5728;&#x4E3B;&#x9898;&#x7EA7;&#x522B;&#x8BBE;&#x7F6E;&#x7B56;&#x7565;&#x3002;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x65B9;&#x6CD5;&#x7684;&#x63D0;&#x51FA;&#x662F;&#x4E3A;&#x4E86;&#x4EE5;&#x4E00;&#x79CD;&#x6709;&#x6548;&#x7684;&#x65B9;&#x5F0F;&#x652F;&#x6301;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;Pulsar&#x88AB;&#x7528;&#x4F5C;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;&#x6765;&#x5B58;&#x50A8;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;
+(&#x4F8B;&#x5982;&#x4E3B;&#x9898;&#x7B56;&#x7565;&#x66F4;&#x6539;)&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x6709;&#x4E00;&#x4E9B;&#x597D;&#x5904;:</p>
+<ul>
+<li>&#x907F;&#x514D;&#x4F7F;&#x7528;ZooKeeper&#xFF0C;&#x7ED9;ZooKeeper&#x5E26;&#x6765;&#x66F4;&#x591A;&#x8D1F;&#x8F7D;</li>
+<li>&#x4F7F;&#x7528;Pulsar&#x4F5C;&#x4E3A;&#x4F20;&#x64AD;&#x7B56;&#x7565;&#x7F13;&#x5B58;&#x7684;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x5730;&#x6269;&#x5C55;</li>
+<li>&#x4F7F;&#x7528;Pulsar SQL&#x67E5;&#x8BE2;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x7684;&#x66F4;&#x6539;&#x5E76;&#x5BA1;&#x8BA1;&#x7CFB;&#x7EDF;</li>
+</ul>
+<p>&#x6BCF;&#x4E2A;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;__change_events&#x7684;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x7684;&#x7CFB;&#x7EDF;&#x4E3B;&#x9898;&#x3002;&#x6B64;&#x7CFB;&#x7EDF;&#x4E3B;&#x9898;&#x5B58;&#x50A8;&#x7ED9;&#x5B9A;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x7684;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x3002;&#x4E0B;&#x56FE;&#x8BF4;&#x660E;&#x4E86;&#x5982;&#x4F55;&#x5229;&#x7528;&#x5B83;&#x6765;&#x66F4;&#x65B0;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;&#x3002;
+<img src="img_37.png" alt="img_37.png"></p>
+<ul>
+<li>Pulsar Admin&#x5BA2;&#x6237;&#x7AEF;&#x4E0E;Admin Restful API&#x901A;&#x4FE1;&#x4EE5;&#x66F4;&#x65B0;&#x4E3B;&#x9898;&#x7EA7;&#x7B56;&#x7565;</li>
+<li>&#x63A5;&#x6536;&#x5230;Admin HTTP&#x8BF7;&#x6C42;&#x7684;&#x4EFB;&#x4F55;&#x4EE3;&#x7406;&#x90FD;&#x5C06;&#x4E3B;&#x9898;&#x7B56;&#x7565;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x5230;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x7684;&#x76F8;&#x5E94;&#x7CFB;&#x7EDF;&#x4E3B;&#x9898;(__change_events)</li>
+<li>&#x62E5;&#x6709;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x5305;&#x7684;&#x6BCF;&#x4E2A;&#x4EE3;&#x7406;&#x90FD;&#x8BA2;&#x9605;&#x7CFB;&#x7EDF;&#x4E3B;&#x9898;(__change_events)&#x4EE5;&#x63A5;&#x6536;&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x7684;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;</li>
+<li>&#x6BCF;&#x4E2A;&#x4EE3;&#x7406;&#x5C06;&#x66F4;&#x6539;&#x4E8B;&#x4EF6;&#x5E94;&#x7528;&#x5230;&#x5176;&#x7B56;&#x7565;&#x7F13;&#x5B58;</li>
+<li>&#x7B56;&#x7565;&#x7F13;&#x5B58;&#x66F4;&#x65B0;&#x540E;&#xFF0C;&#x4EE3;&#x7406;&#x5C06;&#x54CD;&#x5E94;&#x53D1;&#x9001;&#x56DE;Pulsar Admin&#x5BA2;&#x6237;&#x7AEF;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="geo-replication.html" class="navigation navigation-prev " aria-label="Previous page: Pulsar 之 多区域容灾备份">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="topic-compaction.html" class="navigation navigation-next " aria-label="Next page: Pulsar 之 主题复制">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Pulsar 之 多租户","level":"1.3.2.6","depth":3,"next":{"title":"Pulsar 之 主题复制","level":"1.3.2.7","depth":3,"path":"docs/Pulsar/topic-compaction.md","ref":"docs/Pulsar/topic-compaction.md","articles":[]},"previous":{"title":"Pulsar 之 多区域容灾备份","level":"1.3.2.5","depth":3,"path":"docs/Pulsar/geo-replication.md","ref":"docs/Pulsar/geo-replication.md","articles":[]},"dir":"ltr"},"config":{"plugins":["page-treeview","expandable-chapters","chapter-fold","code","back-to-top-button","donate"],"styles":{"website":"assets/styles/website.css"},"pluginsConfig":{"page-treeview":{"collapsed":false,"copyright":"Copyright © aleen42","minHeaderCount":"1","minHeaderDeep":"1"},"chapter-fold":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":false},"donate":{"alipay":"/assets/styles/img/donate/alipay.jpg","alipayText":"支付宝打赏","button":"打赏","title":"","wechat":"/assets/styles/img/donate/wechat.jpg","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","author":"Tony","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Tony","language":"zh-hans","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null},"sidebar":{"谷歌":"https://www.google.com"}},"gitbook":"*","description":"This is record sharing by Tony.","extension":null},"file":{"path":"docs/Pulsar/mulit-tenant.md","mtime":"2023-03-15T03:07:30.661Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-03-15T05:56:33.199Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
