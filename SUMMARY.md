@@ -24,6 +24,7 @@
         * [Pulsar 之 多个播发侦听器](docs/Pulsar/multiple-advertised-listeners.md)
         * [Pulsar 之 数据结构](docs/Pulsar/schema.md)
         * [Pulsar 之 Functions](docs/Pulsar/pulsar-functions.md)
+        * [Pulsar 之 设置functions workers](docs/Pulsar/pulsar-functions-workers.md)
 * 云原生
 * 微服务
     * [微服务](docs/Microservice/index.md)
