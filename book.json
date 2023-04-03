@@ -30,7 +30,7 @@
         "pageNumbers": true,
         "paperSize": "a4"
     },
-    "plugins": ["page-treeview","expandable-chapters","chapter-fold","code","back-to-top-button","donate"],
+    "plugins": ["page-treeview","expandable-chapters","chapter-fold","code","back-to-top-button","donate","disqus"],
     "pluginsConfig": {
         "code": {
             "copyButtons": false
@@ -42,6 +42,9 @@
             "button": "打赏",
             "alipayText": "支付宝打赏",
             "wechatText": "微信打赏"
+        },
+        "disqus": {
+            "shortName": "https-programhuqian13-github-io"
         }
     },
     "language": "zh-hans",
