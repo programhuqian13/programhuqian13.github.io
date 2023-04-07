@@ -17,6 +17,7 @@ records.config文件的默认路径为/usr/local/etc/trafficserver/，该文件�
 配置records.config文件，完成以下步骤：
 - 更新TLS端口(http.server_ports)，并更新代理证书(ssl.client.cert.path)路径和(ssl.client.cert.filename)来保护TLS隧道
 - 配置服务器端口(http.connect_ports)，用于通过隧道连接到代理。如果Pulsar broker侦听4443和6651端口，则在文件中添加broker服务http.connect_ports配置
+
 ```text
 # PROXY TLS PORT
 CONFIG proxy.config.http.server_ports STRING 4443:ssl 4080
@@ -28,11 +29,13 @@ CONFIG proxy.config.ssl.client.cert.filename STRING /proxy-key.pem
 # The range of origin server ports that can be used for tunneling via CONNECT. # Traffic Server allows tunnels only to the specified ports. Supports both wildcards (*) and ranges (e.g. 0-1023).
 CONFIG proxy.config.http.connect_ports STRING 4443 6651 
 ```
+
 - ssl_server_name文件用于为入站和出站连接配置TLS连接处理。配置由入站连接提供的SNI值决定。该文件由一组配置项组成，每个配置项由一个SNI值(fqdn)标识。
 当建立入站TLS连接时，来自TLS协商的SNI值将与此文件中指定的项匹配。如果值匹配，则该项中指定的值将覆盖默认值
 
 下面的示例显示了来自客户端的入站SNI主机名和请求应该重定向的实际代理服务URL之间的映射。例如，如果客户端发送了SNI报头pulse-broker1，
 代理会通过将请求重定向到pulse-broker1:6651服务URL来创建TLS隧道
+
 ```text
 server_config = {
   {
@@ -52,6 +55,7 @@ server_config = {
   },
 }
 ```
+
 配置ssl_server_name.config和records.config文件，ATS-proxy服务器处理SNI路由并在客户端和代理之间创建TCP隧道
 
 # 配置带有SNI路由的pulse-client

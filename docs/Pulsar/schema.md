@@ -168,6 +168,7 @@ Pulsar提供了以下方法来编码单个key/value键值对消息：
 ### static
 
 1. 创建pojo对象
+
 ```java
 # If you use Lombok
 
