@@ -237,6 +237,29 @@ pulsarFunctionsNamespace: public/functions-east-1
 pulsarFunctionsCluster: west-1
 pulsarFunctionsNamespace: public/functions-west-1
 ```
+## 故障排除
+**Error message: Namespace missing local cluster name in clusters list**
 
+```text
+Failed to get partitioned topic metadata: org.apache.pulsar.client.api.PulsarClientException$BrokerMetadataException: Namespace missing local cluster name in clusters list: local_cluster=xyz ns=public/functions clusters=[standalone]
+```
+当发生以下任何情况时，将显示错误消息:
+1. 代理以functionsWorkerEnabled=true启动,但是pulsarFunctionsCluster 在conf/functions_worker.yml没有设置正确的集群
+2. 设置一个地理复制的Pulsar集群，使用functionsWorkerEnabled=true，当一个集群中的代理运行良好时，另一个集群中的代理运行不好
+
+### 应变方法
+如果发生上述任何一种情况，请按照下面的说明解决问题：
+1. 通过设置functionsWorkerEnabled=false禁用函数工作者，并重新启动代理
+2. 获取当前集群列表public/functions命名空间
+```text
+bin/pulsar-admin namespaces get-clusters public/functions
+```
+3. 检查集群是否在集群列表中。如果不是，添加它并更新列表
+```text
+bin/pulsar-admin namespaces set-clusters --clusters <existing-clusters>,<new-cluster> public/functions
+```
+4. 集群设置成功后，通过设置functionsWorkerEnabled=true启用函数工作者
+5. 为pulsarFunctionsCluster参数设置正确的集群名称(conf/functions_worker.yml)
+6. 重启代理
 
 
