@@ -37,7 +37,9 @@
     * [微服务](docs/Microservice/index.md)
     * [Nacos](docs/Nacos/index.md)
         * [安装部署](docs/Nacos/install.md)
-    * [Spring Cloud](docs/kafka/index.md)
+    * [Spring Cloud](docs/spring/spring cloud/index.md)
 * 构建工具
   * [Maven](docs/Maven/index.md)
+* 测试
+  * [Python Locust](docs/test/Locust/index.md)
 
