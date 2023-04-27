@@ -9,6 +9,7 @@
         * [Mysql优化之Schema与数据类型](docs/mysql/Mysql优化之Schema与数据类型.md)
         * [Mysql优化之如何创建高性能的索引](docs/mysql/Mysql优化之如何创建高性能的索引.md)
         * [Mysql优化之查询性能优化](docs/mysql/Mysql优化之查询性能优化.md)
+        * [Mysql之分区表](docs/mysql/Mysql之分区表.md)
 * 消息中间件
     * [kafka](docs/kafka/index.md)
     * [Pulsar](docs/Pulsar/index.md)
@@ -24,9 +25,13 @@
         * [Pulsar 之 多个播发侦听器](docs/Pulsar/multiple-advertised-listeners.md)
         * [Pulsar 之 数据结构](docs/Pulsar/schema.md)
         * [Pulsar 之 Functions](docs/Pulsar/pulsar-functions.md)
-        * [Pulsar 之 设置functions workers](docs/Pulsar/pulsar-functions-workers.md)
-        * [Pulsar 之 设置functions运行时](docs/Pulsar/pulsar-function-config-runtime.md)
-        * [Pulsar 之 设置functions 部署](docs/Pulsar/pulsar-function-deploy.md)
+        * [Pulsar 之 设置Functions workers](docs/Pulsar/pulsar-functions-workers.md)
+        * [Pulsar 之 设置Functions运行时](docs/Pulsar/pulsar-function-config-runtime.md)
+        * [Pulsar 之 Functions 部署](docs/Pulsar/pulsar-function-deploy.md)
+        * [Pulsar 之 Functions 开发](docs/Pulsar/pulsar-function-develop.md)
+        * [Pulsar 之 调试functions](docs/Pulsar/pulsar-function-debug.md)
+        * [Pulsar 之 functions cli 和YAML配置](docs/Pulsar/pulsar-function-config.md)
+        * [Pulsar 之 pulsar manager](docs/Pulsar/pulsar-manager.md)
 * 云原生
 * 微服务
     * [微服务](docs/Microservice/index.md)
