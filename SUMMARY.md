@@ -42,4 +42,6 @@
   * [Maven](docs/Maven/index.md)
 * 测试
   * [Python Locust](docs/test/Locust/index.md)
+    * [Python 安装](docs/test/Locust/install.md)
+    * [Python locustfile](docs/test/Locust/locust-file.md)
 
